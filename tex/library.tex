@@ -1,0 +1,77 @@
+\documentclass[10pt,twocolumn,a4j,landscape]{jsarticle}
+%
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb}
+\usepackage[cmbtt]{bold-extra}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{ascmac}
+%
+\setlength{\topmargin}{20mm}
+\addtolength{\textheight}{-40mm} 
+\addtolength{\topmargin}{-2in}
+\setlength{\textheight}{190mm}
+\setlength{\oddsidemargin}{-15mm}
+\setlength{\textwidth}{279mm}
+%
+\newcommand{\divergence}{\mathrm{div}\,}  %ダイバージェンス
+\newcommand{\grad}{\mathrm{grad}\,}  %グラディエント
+\newcommand{\rot}{\mathrm{rot}\,}  %ローテーション
+%
+%しおり
+\setcounter{tocdepth}{3}
+\usepackage[dvipdfmx,
+bookmarks=true,
+anchorcolor=blue,
+linkcolor=blue,
+urlcolor=blue,
+colorlinks=true,
+bookmarksopen=true,
+]{hyperref}
+
+
+% Listingsの設定
+\usepackage{ascmac,here,txfonts,txfonts}
+\usepackage{listings,jlisting}
+\usepackage{color}
+
+\lstset{
+  breaklines = true,
+  language=c++,
+  basicstyle=\ttfamily\scriptsize,
+  commentstyle={\itshape \color[cmyk]{1,0.4,1,0}},
+  captionpos=b,
+  classoffset=1,
+  keywordstyle={\bfseries \color[cmyk]{100,0,0,0}},
+  stringstyle={\ttfamily \color[cmyk]{0,100,0,0}},
+  frame=tRBl,
+  framesep=5pt,
+  showstringspaces=false,
+  numbers=left,
+  stepnumber=1,
+  numberstyle=\tiny,
+  tabsize=2,
+  xleftmargin=5mm, 
+}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{FCCPC}
+\cfoot{\empty}
+\rfoot{\thepage}
+\renewcommand{\footrulewidth}{0.1pt}
+\renewcommand{\headrulewidth}{0pt}
+\footskip 30pt
+%
+\begin{document}
+\tableofcontents
+\newpage
+%
+%
+\section{文字列}
+
+\subsection{Aho-Corasick法}
+$O(N+M)$
+\lstinputlisting{./code/aho_corasick.cpp}
+
+\end{document}
