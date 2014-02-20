@@ -25,7 +25,7 @@ Coding Rule
 
 
 file name is "hogehoge_method.md"<br>
-5. If not verified, put file in not_verified folder.
+5. If not verified, put file in not_verified folder.<br>
 6. If verified, put file in verified folder.
 
 
