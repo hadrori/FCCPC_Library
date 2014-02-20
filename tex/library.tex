@@ -34,18 +34,16 @@ bookmarksopen=true,
 % Listingsの設定
 \usepackage{ascmac,here,txfonts,txfonts}
 \usepackage{listings,jlisting}
-\usepackage{color}
-
+\usepackage[dvips]{color}
 \lstset{
   breaklines = true,
   language=c++,
-  basicstyle=\ttfamily\scriptsize,
-  commentstyle={\itshape \color[cmyk]{1,0.4,1,0}},
   captionpos=b,
-  classoffset=1,
-  keywordstyle={\bfseries \color[cmyk]{100,0,0,0}},
-  stringstyle={\ttfamily \color[cmyk]{0,100,0,0}},
-  frame=tRBl,
+  basicstyle={\ttfamily\scriptsize},
+  commentstyle={\itshape \color[cmyk]{1,0.4,1,0}},
+  keywordstyle={\ttfamily \color[cmyk]{0.3,0.9,0,0}},
+  stringstyle={\ttfamily \color[rgb]{0.8,0,0}},
+  frame=tlRB,
   framesep=5pt,
   showstringspaces=false,
   numbers=left,
@@ -68,8 +66,15 @@ bookmarksopen=true,
 \newpage
 %
 %
-\section{文字列}
+\section{準備}
+\subsection{init.el}
+linumはemacs24のみ
+\lstinputlisting[language=Lisp]{./code/init.el}
 
+\subsection{tpl.cpp}
+\lstinputlisting{./code/tpl.cpp}
+
+\section{文字列}
 \subsection{Aho-Corasick法}
 $O(N+M)$
 \lstinputlisting{./code/aho_corasick.cpp}
