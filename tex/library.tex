@@ -79,7 +79,23 @@ linumはemacs24のみ
 
 \section{文字列}
 \subsection{Aho-Corasick法}
-$O(N+M)$
+$O(N+M)$\par
 \lstinputlisting{./code/aho_corasick.cpp}
+
+\section{グラフ}
+\subsection{最大流}
+$O(EV^2)$\par
+\lstinputlisting{./code/max_flow.cpp}
+
+\subsection{最小費用流}
+$O(FE\log{V})$\par
+\lstinputlisting{./code/min_cost_flow.cpp}
+
+
+\subsection{最小シュタイナー木}
+$O(4^{|T|}V)$ \par
+gに無向グラフの隣接行列を入れる.\par
+Tに使いたい頂点の集合を入れる.\par
+\lstinputlisting{./code/min_steiner_tree.cpp}
 
 \end{document}
