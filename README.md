@@ -16,12 +16,12 @@ Coding Rule
 
         hogehoge_method.cpp
         ===================
-        verified: AOJ0000, POJ0000
         O(hoge)
         How to use
         ----------
           hogehogehogehgoe
         from hogehoge's Library
+        verified: AOJ0000, POJ0000
 
 
 file name is "hogehoge_method.md"<br>
