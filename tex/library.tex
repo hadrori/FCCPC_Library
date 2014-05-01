@@ -1,4 +1,4 @@
-\documentclass[10pt,twocolumn,a4j,landscape]{jsarticle}
+\documentclass[8pt,twocolumn,a4paper,landscape]{extarticle}
 %
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{latexsym}
@@ -7,7 +7,9 @@
 \usepackage{bm}
 \usepackage{graphicx}
 \usepackage{ascmac}
+\usepackage{indentfirst}
 %
+\setlength{\columnsep}{3zw} 
 \setlength{\topmargin}{20mm}
 \addtolength{\textheight}{-40mm} 
 \addtolength{\topmargin}{-2in}
@@ -39,11 +41,11 @@ bookmarksopen=true,
   breaklines = true,
   language=c++,
   captionpos=b,
-  basicstyle={\ttfamily\scriptsize},
+  basicstyle={\ttfamily \small},
   commentstyle={\itshape \color[cmyk]{1,0.4,1,0}},
   keywordstyle={\ttfamily \color[cmyk]{0.3,0.9,0,0}},
   stringstyle={\ttfamily \color[rgb]{0.8,0,0}},
-  frame=tlRB,
+  frame=tlrb,
   framesep=5pt,
   showstringspaces=false,
   numbers=left,
@@ -62,7 +64,7 @@ bookmarksopen=true,
 \rfoot{\thepage}
 \renewcommand{\footrulewidth}{0.1pt}
 \renewcommand{\headrulewidth}{0pt}
-\footskip 30pt
+\footskip 24pt
 %
 \begin{document}
 \tableofcontents
@@ -71,7 +73,7 @@ bookmarksopen=true,
 %
 \section{準備}
 \subsection{init.el}
-linumはemacs24のみ
+linumはemacs24のみ\par
 \lstinputlisting[language=Lisp]{./code/init.el}
 
 \subsection{tpl.cpp}
@@ -83,28 +85,30 @@ $O(N+M)$\par
 \lstinputlisting{./code/aho_corasick.cpp}
 
 \section{グラフ}
-\subsection{関節点}
+\subsection{強連結成分分解}
+\subsubsection{関節点}
 $O(E)$\par
 ある関節点uがグラフをk個に分割するときartにはk-1個のuが含まれる. 不要な場合はuniqueを忘れないこと.\par
 \lstinputlisting{./code/art_point.cpp}
-\subsection{橋}
+
+\subsubsection{橋}
 $O(V+E)$\par
 \lstinputlisting{./code/bridge.cpp}
 
-\subsection{強連結成分分解}
+\subsubsection{強連結成分分解}
 $O(V+E)$\par
 \lstinputlisting{./code/scc.cpp}
 
-\subsection{最大流}
+\subsection{フロー}
+\subsubsection{最大流}
 $O(EV^2)$\par
 \lstinputlisting{./code/max_flow.cpp}
 
-\subsection{二部マッチング}
+\subsubsection{二部マッチング}
 $O(EV)$\par
 \lstinputlisting{./code/bi_matching.cpp}
 
-
-\subsection{最小費用流}
+\subsubsection{最小費用流}
 $O(FE\log{V})$\par
 \lstinputlisting{./code/min_cost_flow.cpp}
 
