@@ -1,13 +1,15 @@
 aho_corasick.cpp
 ===================
-O(N+M)
+O(N+M)  
+N := 調べる文字列の長さ
+M := パターンの長さ
 How to use
 ----------
-* call buildPMA()
-* call match()
-* res has which pattern is contained
+* buildPMA()を呼ぶ
+* match()を呼ぶ
+* res にどのパターンに一致したかが入る
 
 
-from UEC Library<br>
-verified:<br>
+from UEC Library  
+verified:  
 AOJ2212, LiveArchive5103
