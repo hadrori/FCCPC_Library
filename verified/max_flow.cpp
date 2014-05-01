@@ -42,9 +42,9 @@ int dfs(int v, int t, int f){
 int max_flow(int s, int t){
     int flow = 0, f;
     while(1){
-        build_level(s, t);
+        bfs(s, t);
         if(level[t] == -1) return flow;
         memset(itr, 0, sizeof(itr));
-        while(f = dfs(s, t, inf) > 0) flow += f;;
+        while((f = dfs(s, t, INF)) > 0) flow += f;
     }
 }
