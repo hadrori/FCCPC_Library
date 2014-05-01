@@ -4,7 +4,6 @@
 
 * Verify
     - geom
-    - scc
     - suffix array
     - edit distance
     - matrix
