@@ -9,8 +9,7 @@ void add_edge(int from, int to, int cap){
 
 void bfs(int s, int t){
     memset(level, -1, sizeof(level));
-    queue<int> que;
-    que.push(s);
+    queue<int> que; que.push(s);
     level[s] = 0;
     while(!que.empty()){
         int v = que.front(); que.pop();

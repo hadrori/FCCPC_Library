@@ -16,6 +16,7 @@ const double PI = acos(-1.0);
 
 typedef long long ll;
 typedef vector<int> vi;
+typedef vector<vi> vvi;
 typedef pair<int,int> pii;
 
 int main(){
