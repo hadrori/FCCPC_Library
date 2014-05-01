@@ -112,7 +112,10 @@ $O(EV)$\par
 $O(FE\log{V})$\par
 \lstinputlisting{./code/min_cost_flow.cpp}
 
-\subsection{最小シュタイナー木}
+\subsection{木}
+\subsubsection{木の直径}
+ある点(どこでもよい)から一番遠い点aを求める. 点aから一番遠い点までの距離がその木の直径になる.\par
+\subsubsection{最小シュタイナー木}
 $O(4^{|T|}V)$ \par
 gは無向グラフの隣接行列. Tは使いたい頂点の集合.\par
 \lstinputlisting{./code/min_steiner_tree.cpp}
