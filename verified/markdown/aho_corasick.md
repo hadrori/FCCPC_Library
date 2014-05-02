@@ -9,7 +9,11 @@ How to use
 * match()を呼ぶ
 * res にどのパターンに一致したかが入る
 
+Code
+-----
+![aho-corasick](../code/aho_corasick.cpp)
 
+----
 from UEC Library  
 verified:  
 AOJ2212, LiveArchive5103
