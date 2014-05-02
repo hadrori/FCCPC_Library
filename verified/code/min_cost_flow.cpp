@@ -23,7 +23,7 @@ int min_cost_flow(int s, int t, int f){
             pii p = que.top(); que.pop();
             int v = p.second;
             if(dist[v] < p.first) continue;
-            for(int i = 0; i < G[v].size(); i++){
+            rep(i,G[v].size()){
                 edge &e = G[v][i];
                 if(e.cap > 0 && dist[e.to] > dist[v] + e.cost + h[v] - h[e.to]){
                     dist[e.to] = dist[v] + e.cost + h[v] - h[e.to];
@@ -34,7 +34,7 @@ int min_cost_flow(int s, int t, int f){
             }
         }
         if(dist[t] == inf) return -1;
-        for(int v = 0; v < V; v++) h[v] += dist[v];
+        rep(v,V) h[v] += dist[v];
         int d = f;
         for(int v = t; v != s; v = prevv[v])
             d = min(d, G[prevv[v]][preve[v]].cap);
