@@ -11,7 +11,7 @@ arr mul(const mat &A, const arr &x) {
     return y;
 }
 
-mat mul(mat &A, mat &B) {
+mat mul(const mat &A, const mat &B) {
     mat C(A.size(), arr(B[0].size()));
     rep(i,C.size()) rep(j,C[i].size()) rep(k,A[i].size())
         C[i][j] += A[i][k] * B[k][j];
