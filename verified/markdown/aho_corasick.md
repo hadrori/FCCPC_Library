@@ -11,7 +11,7 @@ How to use
 
 Code
 -----
-![aho-corasick](../code/aho_corasick.cpp)
+![aho-corasick](https://raw.githubusercontent.com/hadrori/library/master/verified/code/aho_corasick.cpp)
 
 ----
 from UEC Library  
