@@ -1,5 +1,5 @@
 vi G[MAX];
-vector<pii> brdg;
+vector<pii> brdg; // brdgに橋のリストが入る
 stack<int> roots, S;
 int num[MAX], inS[MAX], t, V;
 

@@ -120,4 +120,36 @@ $O(4^{|T|}V)$ \par
 gは無向グラフの隣接行列. Tは使いたい頂点の集合.\par
 \lstinputlisting{./code/min_steiner_tree.cpp}
 
+\section{数学}
+\subsection{行列}
+C++11だとarrayという名前では衝突するのでarrにしている.\par
+\lstinputlisting{./code/matrix.cpp}
+
+\subsubsection{単位行列}
+$O(N)$ \par
+\lstinputlisting{./code/matrix_ident.cpp}
+
+\subsubsection{積}
+\begin{table}[htb]
+  \begin{tabular}{|c|c|c|} \hline
+    arr*arr & mat*arr & mat*mat \\ \hline
+    $O(N)$ & $O(N^2)$ & $O(N^3)$\\ \hline
+  \end{tabular}
+\end{table}
+\lstinputlisting{./code/matrix_mul.cpp}
+
+\subsubsection{累乗}
+$O(N^3 \log{e})$\par
+単位行列と積(mat*mat)が必要.\par
+\lstinputlisting{./code/matrix_pow.cpp}
+
+\subsubsection{線形方程式の解(Givens消去法)}
+$O(N^3)$
+\lstinputlisting{./code/givens.cpp}
+
+\subsubsection{トレース}
+$O(N)$
+\lstinputlisting{./code/matrix_trace.cpp}
+
+
 \end{document}

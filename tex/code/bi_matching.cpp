@@ -24,11 +24,9 @@ bool dfs(int v){
 int bi_matching(){
     int res = 0;
     memset(match, -1, sizeof(match));
-    for(int v = 0; v < V; v++){
-        if(match[v] < 0){
-            memset(used, 0, sizeof(used));
-            if(dfs(v)) res++;
-        }
+    rep(v,V) if(match[v] < 0){
+        memset(used, 0, sizeof(used));
+        if(dfs(v)) res++;
     }
     return res;
 }
