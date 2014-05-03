@@ -143,7 +143,7 @@ $gen\_mod\_inv()$はN未満の全ての数の逆元を生成する.
 $O(\log k)$\par
 \lstinputlisting{./code/mod_pow.cpp}
 
-\subsubsection{階乗の剰余(Wilsonの定理)}
+\subsubsection{階乗($n! \bmod m$)}
 \begin{table}[htb]
   \begin{tabular}{|c|c|} \hline
     $gen\_fact()$ & $mod\_fact()$ \\ \hline
@@ -153,7 +153,7 @@ $O(\log k)$\par
 mは素数.
 \lstinputlisting{./code/mod_fact.cpp}
 
-\subsubsection{$_nC_k mod m$}
+\subsubsection{組み合わせ($_nC_k \bmod m$)}
 $O(\log n)$\par
 $mod\_fact()$と$mod\_inverse()$が必要.
 \lstinputlisting{./code/mod_combi.cpp}
