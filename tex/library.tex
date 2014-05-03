@@ -80,7 +80,8 @@ linumはemacs24のみ\par
 \lstinputlisting{./code/tpl.cpp}
 
 \section{文字列}
-\subsection{Aho-Corasick法}
+\subsection{マッチング}
+\subsubsection{複数文字列マッチング(Aho-Corasick法)}
 $O(N+M)$\par
 \lstinputlisting{./code/aho_corasick.cpp}
 
@@ -109,7 +110,7 @@ $O(EV)$\par
 \lstinputlisting{./code/bi_matching.cpp}
 
 \subsubsection{最小費用流}
-$O(FE\log{V})$\par
+$O(FE\log V)$\par
 \lstinputlisting{./code/min_cost_flow.cpp}
 
 \subsection{木}
@@ -121,6 +122,42 @@ gは無向グラフの隣接行列. Tは使いたい頂点の集合.\par
 \lstinputlisting{./code/min_steiner_tree.cpp}
 
 \section{数学}
+\subsection{整数}
+\subsubsection{拡張ユークリッドの互除法}
+$O(\log min(a,b))$\par
+$ax+by=gcd(a,b)$を求める. 解がある場合は1を返す.
+\lstinputlisting{./code/extgcd.cpp}
+
+\subsubsection{逆元}
+\begin{table}[htb]
+  \begin{tabular}{|c|c|} \hline
+    $mod\_inverse()$ & $gen\_mod\_inv()$ \\ \hline
+    $O(\log n)$ & $O(n)$ \\ \hline
+     & $extgcd()$ \\ \hline
+  \end{tabular}
+\end{table}
+$gen\_mod\_inv()$はN未満の全ての数の逆元を生成する.
+\lstinputlisting{./code/mod_inverse.cpp}
+
+\subsubsection{冪剰余}
+$O(\log k)$\par
+\lstinputlisting{./code/mod_pow.cpp}
+
+\subsubsection{階乗の剰余(Wilsonの定理)}
+\begin{table}[htb]
+  \begin{tabular}{|c|c|} \hline
+    $gen\_fact()$ & $mod\_fact()$ \\ \hline
+    $O(m)$ & $O(\log_{m} n)$ \\ \hline
+  \end{tabular}
+\end{table}
+mは素数.
+\lstinputlisting{./code/mod_fact.cpp}
+
+\subsubsection{$_nC_k mod m$}
+$O(\log n)$\par
+$mod\_fact()$と$mod\_inverse()$が必要.
+\lstinputlisting{./code/mod_combi.cpp}
+
 \subsection{行列}
 C++11だとarrayという名前では衝突するのでarrにしている.\par
 \lstinputlisting{./code/matrix.cpp}
@@ -139,7 +176,7 @@ $O(N)$ \par
 \lstinputlisting{./code/matrix_mul.cpp}
 
 \subsubsection{累乗}
-$O(N^3 \log{e})$\par
+$O(N^3 \log e)$\par
 単位行列と積(mat*mat)が必要.\par
 \lstinputlisting{./code/matrix_pow.cpp}
 
