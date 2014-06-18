@@ -52,7 +52,7 @@ bookmarksopen=true,
   stepnumber=1,
   numberstyle=\tiny,
   tabsize=2,
-  xleftmargin=5mm, 
+  xleftmargin=5mm,
 }
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -84,6 +84,14 @@ linumはemacs24のみ\par
 \subsubsection{複数文字列マッチング(Aho-Corasick法)}
 $O(N+M)$\par
 \lstinputlisting{./code/aho_corasick.cpp}
+
+\subsection{Suffix Array}
+find\_string() : $O(|T|\log |S|)$\par
+S中にTが含まれないなら-1, 含まれるならその先頭.\par
+LCS() : $O(|S+T|)$\par
+最長共通部分文字列. (先頭, 長さ)を返す.
+
+\lstinputlisting{./code/sa.cpp}
 
 \section{グラフ}
 \subsection{強連結成分分解}
@@ -164,6 +172,18 @@ mは素数.
 $O(\log n)$\par
 $mod\_fact()$と$mod\_inverse()$が必要.
 \lstinputlisting{./code/mod_combi.cpp}
+
+\subsubsection{カタラン数}
+$n\leq 16$程度が限度.
+\begin{eqnarray*}
+  C_n &=& \frac{1}{n+1}\binom{2n}{n}\\
+      &=& \binom{2n}{n}-\binom{2n}{n-1} (n\geq 1)\\
+\end{eqnarray*}
+nが十分大きいとき, カタラン数は以下に近似できる.
+\begin{eqnarray*}
+  C_n &=& \frac{4^n}{n^{3/2}\sqrt{\pi}}\\
+\end{eqnarray*}
+()を正しく並べる方法, 二分木, 格子状の経路の数え上げ, 平面グラフの交差などに使われる.
 
 \subsection{行列}
 C++11だとarrayという名前では衝突するのでarrにしている.\par
