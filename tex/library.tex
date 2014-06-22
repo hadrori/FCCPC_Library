@@ -174,16 +174,49 @@ $mod\_fact()$と$mod\_inverse()$が必要.
 \lstinputlisting{./code/mod_combi.cpp}
 
 \subsubsection{カタラン数}
-$n\leq 16$程度が限度.
+$n\leq 16$程度が限度. $n\geq 1$について以下が成り立つ.
 \begin{eqnarray*}
   C_n &=& \frac{1}{n+1}\binom{2n}{n}\\
-      &=& \binom{2n}{n}-\binom{2n}{n-1} (n\geq 1)\\
+      &=& \binom{2n}{n}-\binom{2n}{n-1}\\
 \end{eqnarray*}
 nが十分大きいとき, カタラン数は以下に近似できる.
 \begin{eqnarray*}
   C_n &=& \frac{4^n}{n^{3/2}\sqrt{\pi}}\\
 \end{eqnarray*}
-()を正しく並べる方法, 二分木, 格子状の経路の数え上げ, 平面グラフの交差などに使われる.
+()を正しく並べる方法, 二分木, 格子状の経路の数え上げ, 平面グラフの交差などに使われる.\\
+$C_3=5$\\
+\includegraphics[width=9cm, clip]{img/Catalan_tree.eps}\\
+$C_4=14$\\
+\includegraphics[width=9cm, clip]{img/Catalan_graph.eps}\\
+
+
+\subsection{多項式}
+FFTは基本定数重めなのでTLEに注意する.
+\subsubsection{FFT(complex)}
+$O(N \log N)$\par
+複素数を用いたFFT. 変換するvectorのサイズは2の冪乗にすること.
+\lstinputlisting{./code/fft.cpp}
+
+\subsubsection{FFT(modulo)}
+$O(N \log N)$\par
+剰余環を用いたFFT(FMT). 変換するvectorのサイズは2の冪乗にすること. modは$a*2^e+1$の形.\\
+\lstinputlisting{./code/fmt.cpp}
+
+\subsubsection{積(FMT)}
+$O(N \log N)$\par
+$poly\_mul()$が必要.
+\lstinputlisting{./code/poly_mul.cpp}
+
+\subsubsection{逆元(FMT)}
+$O(N \log N)$\par
+$extgcd()$, $mod\_inverse()$, $poly\_mul()$, $fmt()$が必要.
+\lstinputlisting{./code/poly_inv.cpp}
+
+\subsubsection{平方根(FMT)}
+$O(N log N)$\par
+$extgcd()$, $mod\_inverse()$, $poly\_inv()$, $poly\_mul()$, $fmt()$が必要.
+\lstinputlisting{./code/poly_sqrt.cpp}
+
 
 \subsection{行列}
 C++11だとarrayという名前では衝突するのでarrにしている.\par
@@ -214,6 +247,5 @@ $O(N^3)$
 \subsubsection{トレース}
 $O(N)$
 \lstinputlisting{./code/matrix_trace.cpp}
-
 
 \end{document}
