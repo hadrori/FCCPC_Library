@@ -3,3 +3,4 @@
 *.toc
 *.dvi
 *.out
+.DS*

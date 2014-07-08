@@ -1,4 +1,4 @@
-\documentclass[10pt,twocolumn,a4j,landscape]{jsarticle}
+\documentclass[9pt,twocolumn,a4paper,landscape]{extarticle}
 %
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{latexsym}
@@ -7,7 +7,9 @@
 \usepackage{bm}
 \usepackage{graphicx}
 \usepackage{ascmac}
+\usepackage{indentfirst}
 %
+\setlength{\columnsep}{3zw} 
 \setlength{\topmargin}{20mm}
 \addtolength{\textheight}{-40mm} 
 \addtolength{\topmargin}{-2in}
@@ -39,27 +41,30 @@ bookmarksopen=true,
   breaklines = true,
   language=c++,
   captionpos=b,
-  basicstyle={\ttfamily\scriptsize},
+  basicstyle={\ttfamily \footnotesize},
   commentstyle={\itshape \color[cmyk]{1,0.4,1,0}},
   keywordstyle={\ttfamily \color[cmyk]{0.3,0.9,0,0}},
   stringstyle={\ttfamily \color[rgb]{0.8,0,0}},
-  frame=tlRB,
+  frame=tlrb,
   framesep=5pt,
   showstringspaces=false,
   numbers=left,
   stepnumber=1,
   numberstyle=\tiny,
   tabsize=2,
-  xleftmargin=5mm, 
+  xleftmargin=5mm,
 }
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+\lhead{\empty}
+\chead{\empty}
+\rhead{\empty}
 \lfoot{FCCPC Library}
 \cfoot{\empty}
 \rfoot{\thepage}
 \renewcommand{\footrulewidth}{0.1pt}
 \renewcommand{\headrulewidth}{0pt}
-\footskip 30pt
+\footskip 24pt
 %
 \begin{document}
 \tableofcontents
@@ -68,15 +73,182 @@ bookmarksopen=true,
 %
 \section{準備}
 \subsection{init.el}
-linumはemacs24のみ
+linumはemacs24のみ\par
 \lstinputlisting[language=Lisp]{./code/init.el}
 
 \subsection{tpl.cpp}
 \lstinputlisting{./code/tpl.cpp}
 
 \section{文字列}
-\subsection{Aho-Corasick法}
-$O(N+M)$
+\subsection{マッチング}
+\subsubsection{複数文字列マッチング(Aho-Corasick法)}
+$O(N+M)$\par
 \lstinputlisting{./code/aho_corasick.cpp}
+
+\subsection{Suffix Array}
+find\_string() : $O(|T|\log |S|)$\par
+S中にTが含まれないなら-1, 含まれるならその先頭.\par
+LCS() : $O(|S+T|)$\par
+最長共通部分文字列. (先頭, 長さ)を返す.
+
+\lstinputlisting{./code/sa.cpp}
+
+\section{グラフ}
+\subsection{強連結成分分解}
+\subsubsection{関節点}
+$O(E)$\par
+ある関節点uがグラフをk個に分割するときartにはk-1個のuが含まれる. 不要な場合はuniqueを忘れないこと.\par
+\lstinputlisting{./code/art_point.cpp}
+
+\subsubsection{橋}
+$O(V+E)$\par
+\lstinputlisting{./code/bridge.cpp}
+
+\subsubsection{強連結成分分解}
+$O(V+E)$\par
+\lstinputlisting{./code/scc.cpp}
+
+\subsection{フロー}
+\subsubsection{最大流}
+$O(EV^2)$\par
+MAXの指定を忘れないこと
+\lstinputlisting{./code/max_flow.cpp}
+
+\subsubsection{二部マッチング}
+$O(EV)$\par
+
+\lstinputlisting{./code/bi_matching.cpp}
+頂点数VとMAX_Vの指定を忘れないこと
+\subsubsection{最小費用流}
+$O(FE\log V)$\par
+頂点数VとMAX_Vの指定を忘れないこと
+\lstinputlisting{./code/min_cost_flow.cpp}
+
+\subsection{木}
+\subsubsection{木の直径}
+ある点(どこでもよい)から一番遠い点aを求める. 点aから一番遠い点までの距離がその木の直径になる.\par
+\subsubsection{最小シュタイナー木}
+$O(4^{|T|}V)$ \par
+gは無向グラフの隣接行列. Tは使いたい頂点の集合.\par
+\lstinputlisting{./code/min_steiner_tree.cpp}
+
+\subsection{包除原理}
+\subsubsection{彩色数}
+$O(2^VV)$\par
+N[i] := iと隣接する頂点の集合(iも含む)\par
+\lstinputlisting{./code/graph-coloring.cpp}
+
+
+\section{数学}
+\subsection{整数}
+\subsubsection{拡張ユークリッドの互除法}
+$O(\log min(a,b))$\par
+$ax+by=gcd(a,b)$を求める. 解がある場合は1を返す.
+\lstinputlisting{./code/extgcd.cpp}
+
+\subsubsection{逆元}
+\begin{table}[htb]
+  \begin{tabular}{|c|c|} \hline
+    $mod\_inverse()$ & $gen\_mod\_inv()$ \\ \hline
+    $O(\log n)$ & $O(n)$ \\ \hline
+     & $extgcd()$ \\ \hline
+  \end{tabular}
+\end{table}
+$gen\_mod\_inv()$はN未満の全ての数の逆元を生成する.
+\lstinputlisting{./code/mod_inverse.cpp}
+
+\subsubsection{冪剰余}
+$O(\log k)$\par
+\lstinputlisting{./code/mod_pow.cpp}
+
+\subsubsection{階乗($n! \bmod m$)}
+\begin{table}[htb]
+  \begin{tabular}{|c|c|} \hline
+    $gen\_fact()$ & $mod\_fact()$ \\ \hline
+    $O(m)$ & $O(\log_{m} n)$ \\ \hline
+  \end{tabular}
+\end{table}
+mは素数.
+\lstinputlisting{./code/mod_fact.cpp}
+
+\subsubsection{組み合わせ($_nC_k \bmod m$)}
+$O(\log n)$\par
+$mod\_fact()$と$mod\_inverse()$が必要.
+\lstinputlisting{./code/mod_combi.cpp}
+
+\subsubsection{カタラン数}
+$n\leq 16$程度が限度. $n\geq 1$について以下が成り立つ.
+\begin{eqnarray*}
+  C_n &=& \frac{1}{n+1}\binom{2n}{n}\\
+      &=& \binom{2n}{n}-\binom{2n}{n-1}\\
+\end{eqnarray*}
+nが十分大きいとき, カタラン数は以下に近似できる.
+\begin{eqnarray*}
+  C_n &=& \frac{4^n}{n^{3/2}\sqrt{\pi}}\\
+\end{eqnarray*}
+()を正しく並べる方法, 二分木, 格子状の経路の数え上げ, 平面グラフの交差などに使われる.\\
+$C_3=5$\\
+\includegraphics[width=9cm, clip]{img/Catalan_tree.eps}\\
+$C_4=14$\\
+\includegraphics[width=9cm, clip]{img/Catalan_graph.eps}\\
+
+
+\subsection{多項式}
+FFTは基本定数重めなのでTLEに注意する.
+\subsubsection{FFT(complex)}
+$O(N \log N)$\par
+複素数を用いたFFT. 変換するvectorのサイズは2の冪乗にすること.
+\lstinputlisting{./code/fft.cpp}
+
+\subsubsection{FFT(modulo)}
+$O(N \log N)$\par
+剰余環を用いたFFT(FMT). 変換するvectorのサイズは2の冪乗にすること. modは$a*2^e+1$の形.\\
+\lstinputlisting{./code/fmt.cpp}
+
+\subsubsection{積(FMT)}
+$O(N \log N)$\par
+$poly\_mul()$が必要.
+\lstinputlisting{./code/poly_mul.cpp}
+
+\subsubsection{逆元(FMT)}
+$O(N \log N)$\par
+$extgcd()$, $mod\_inverse()$, $poly\_mul()$, $fmt()$が必要.
+\lstinputlisting{./code/poly_inv.cpp}
+
+\subsubsection{平方根(FMT)}
+$O(N log N)$\par
+$extgcd()$, $mod\_inverse()$, $poly\_inv()$, $poly\_mul()$, $fmt()$が必要.
+\lstinputlisting{./code/poly_sqrt.cpp}
+
+
+\subsection{行列}
+C++11だとarrayという名前では衝突するのでarrにしている.\par
+\lstinputlisting{./code/matrix.cpp}
+
+\subsubsection{単位行列}
+$O(N)$ \par
+\lstinputlisting{./code/matrix_ident.cpp}
+
+\subsubsection{積}
+\begin{table}[htb]
+  \begin{tabular}{|c|c|c|} \hline
+    arr*arr & mat*arr & mat*mat \\ \hline
+    $O(N)$ & $O(N^2)$ & $O(N^3)$\\ \hline
+  \end{tabular}
+\end{table}
+\lstinputlisting{./code/matrix_mul.cpp}
+
+\subsubsection{累乗}
+$O(N^3 \log e)$\par
+単位行列と積(mat*mat)が必要.\par
+\lstinputlisting{./code/matrix_pow.cpp}
+
+\subsubsection{線形方程式の解(Givens消去法)}
+$O(N^3)$
+\lstinputlisting{./code/givens.cpp}
+
+\subsubsection{トレース}
+$O(N)$
+\lstinputlisting{./code/matrix_trace.cpp}
 
 \end{document}

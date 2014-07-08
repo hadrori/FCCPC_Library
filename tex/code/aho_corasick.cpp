@@ -1,11 +1,11 @@
 struct PMA{
     PMA* next[256];    //0 is failure link 
-    vector<int> matched;
+    vi matched;
     PMA(){memset(next, 0, sizeof(next));}
     ~PMA(){rep(i,256) if(next[i]) delete next[i];}
 };
-vector<int> set_union(const vector<int> &a,const vector<int> &b){
-    vector<int> res;
+vi set_union(const vi &a,const vi &b){
+    vi res;
     set_union(all(a), all(b), back_inserter(res));
     return res;
 }
@@ -44,13 +44,13 @@ PMA *buildPMA(vector<string> pattern){
     }
     return root;
 }
-void match(PMA* &pma, const string s, vector<int> &res){
+void match(PMA* &pma, const string s, vi &res){
     rep(i,s.size()){
         int c = s[i];
         while(!pma->next[c])
             pma = pma->next[0];
         pma = pma->next[c];
         rep(j,pma->matched.size())
-            res[pma->matched[j]] = true;
+            res[pma->matched[j]] = 1;
     }
 }

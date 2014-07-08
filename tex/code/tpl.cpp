@@ -1,16 +1,5 @@
-#include <algorithm>
-#include <bitset>
-#include <cmath>
-#include <complex>
-#include <cstdio>
-#include <cstring>
-#include <iostream>
-#include <map>
-#include <queue>
-#include <set>
-#include <stack>
-#include <string>
-#include <vector>
+#include <bits/stdc++.h>
+using namespace std;
 
 #define rep(i,a) for(int i = 0;i < (a); i++)
 #define repi(i,a,b) for(int i = (a); i < (b); i++)
@@ -21,14 +10,14 @@
 #define UNIQUE(u) (u).erase(unique(all(u)),(u).end())
 #define pb push_back
 #define mp make_pair
-#define INF 1e9
-#define EPS 1e-10
-#define PI acos(-1.0)
-
-using namespace std;
+const int INF = 1e9;
+const double EPS = 1e-8;
+const double PI = acos(-1.0);
 
 typedef long long ll;
 typedef vector<int> vi;
+typedef vector<vi> vvi;
+typedef pair<int,int> pii;
 
 int main(){
 }
