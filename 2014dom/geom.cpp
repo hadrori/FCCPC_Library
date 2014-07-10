@@ -1,10 +1,16 @@
 #include <cassert>
 #include <cmath>
 #include <complex>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
+#define rep(i,n) repi(i,0,n)
+#define repi(i,a,b) for(int i=int(a);i<int(b);++i)
+
 #define pb push_back
+#define mp make_pair
 
 // constants and eps-considered operators
 
@@ -134,7 +140,7 @@ line tangent(const circle& c, double th) {
 vector<line> common_tangents(const circle& c, const circle& d) {
     vector<line> ret;
     double dist = abs(d.o - c.o), th = arg(d.o - c.o);
-    if (abs(c.r - d.r) < dst) { // outer
+    if (abs(c.r - d.r) < dist) { // outer
         double dth = acos((c.r - d.r) / dist);
         ret.pb(tangent(c, th - dth));
         ret.pb(tangent(c, th + dth));
@@ -154,38 +160,57 @@ pair<circle, circle> tangent_circles(const line& l, const line& m, double r) {
     return mp(circle(p - d, r), circle(p + d, r));
 }
 line bisector(point a, point b);
-circle circum_circle(poitn a, point b, point c) {
+circle circum_circle(point a, point b, point c) {
     point o = crosspointLL(bisector(a, b), bisector(a, c));
-    return circle(o, a.o - o);
+    return circle(o, abs(a - o));
 }
 
 // polygons
 
-typedef vector<point> poly;
+typedef vector<point> form;
 
-point center(const poly& g) {
-    if (g.size() == 1) return g[0];
-    if (g.size() == 2) return (g[0] + g[1]) / 2.0;
-
+double area(const form& f) {
+    double ret = 0.0;
+    int p = f.size() - 1;
+    rep(i, f.size()) {
+        ret += cross(f[p], f[i]) / 2.0, p = i;
+    }
+    return ret;
+}
+point centroid(const form& f) {
+    if (f.size() == 1) return f[0];
+    if (f.size() == 2) return (f[0] + f[1]) / 2.0;
+    point ret = 0.0;
+    int p = f.size() - 1;
+    rep(i, f.size()) {
+        ret += cross(f[p], f[i]) * (f[p] + f[i]), p = i;
+    }
+    return ret / area(f) / 6.0;
 }
 line bisector(point a, point b) {
     point m = (a + b) / 2.0;
-    return line(m, m + (b - a) * P(0, 1));
+    return line(m, m + (b - a) * point(0, 1));
 }
-poly convex_cut(const poly& g, const line& l) {
-    poly ret;
-    rep(i, g.size()) {
-        point a = g[i], b = g[(i + 1) % g.size()];
+form convex_cut(const form& f, const line& l) {
+    form ret;
+    rep(i, f.size()) {
+        point a = f[i], b = f[(i + 1) % f.size()];
         if (ccw(l.a, l.b, a) != -1) ret.pb(a);
         if (intersectLS(l, line(a, b))) ret.pb(crosspointLL(l, line(a, b)));
     }
     return ret;
 }
-poly voronoi_cell(poly g, vector<point> v, int k) {
+form voronoi_cell(form f, vector<point> v, int k) {
     rep(i, v.size()) if (i != k) {
-        g = convex_cut(g, bisector(v[i], v[k]));
+        f = convex_cut(f, bisector(v[i], v[k]));
     }
-    return g;
+    return f;
 }
 
-int main() {}
+int main() {
+    form f;
+    f.pb(point(0.0, 0.0));
+    f.pb(point(1.0, 0.0));
+    f.pb(point(0.0, 1.0));
+    cerr << centroid(f) << endl;
+}
