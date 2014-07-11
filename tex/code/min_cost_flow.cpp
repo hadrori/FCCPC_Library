@@ -1,50 +1,70 @@
-struct edge{ int to, cap, cost, rev;};
+#include <queue>
+#include <vector>
 
-int V;
-vector<edge> G[MAX_V];
-int h[MAX_V];
-int dist[MAX_V];
-int prevv[MAX_V], preve[MAX_V];
+using namespace std;
 
-void add_edge(int from, int to, int cap, int cost){
-    G[from].push_back((edge){to, cap, cost, int(G[to].size())});
-    G[to].push_back((edge){from, 0, -cost, int(G[from].size() - 1)});
+#define rep(i,n) repi(i,0,n)
+#define repi(i,a,b) for(int i=int(a);i<int(b);++i)
+
+#define mp make_pair
+
+const int inf = 1e9;
+
+struct edge { int to, cap, cost, rev; };
+typedef vector<vector<edge> > graph;
+
+graph G;
+
+void add_edge(int from, int to, int cap, int cost)
+{
+    G[from].push_back((edge) {to, cap, cost, (int) G[to].size()});
+    G[to].push_back((edge) {from, 0, -cost, (int) G[from].size() - 1});
 }
 
-int min_cost_flow(int s, int t, int f){
-    int res = 0;
-    fill(h, h + V, 0);
-    while(f > 0){
-        priority_queue<pii, vector<pii>, greater<pii> > que;
-        fill(dist, dist + V, inf);
-        dist[s] = 0;
-        que.push(pii(0, s));
-        while(!que.empty()){
-            pii p = que.top(); que.pop();
-            int v = p.second;
-            if(dist[v] < p.first) continue;
-            rep(i,G[v].size()){
-                edge &e = G[v][i];
-                if(e.cap > 0 && dist[e.to] > dist[v] + e.cost + h[v] - h[e.to]){
+int min_cost_flow(int s, int t, int f)
+{
+    typedef pair<int, int> pii;
+
+    const int n = G.size();
+    vector<int> h, dist, prev, prev_e;
+
+    int ret = 0;
+    h.assign(n, 0);
+    while (f > 0) {
+        priority_queue<pii, vector<pii>, greater<pii> > q;
+        dist.assign(n, inf);
+        dist[s] = 0; q.push(mp(0, s));
+        while (not q.empty()) {
+            int d = q.top().first;
+            int v = q.top().second;
+            q.pop();
+            if (dist[v] < d) continue;
+            rep(i, G[v].size()) {
+                edge& e = G[v][i];
+                if (e.cap > 0 and dist[e.to] > dist[v] + e.cost + h[v] - h[e.to]) {
                     dist[e.to] = dist[v] + e.cost + h[v] - h[e.to];
-                    prevv[e.to] = v;
-                    preve[e.to] = i;
-                    que.push(pii(dist[e.to], e.to));
+                    prev[e.to] = v;
+                    prev_e[e.to] = i;
+                    q.push(mp(dist[e.to], e.to));
                 }
             }
         }
-        if(dist[t] == inf) return -1;
-        rep(v,V) h[v] += dist[v];
+        if (dist[t] == inf) return -1;
+        rep(i, n) h[i] += dist[i];
+
         int d = f;
-        for(int v = t; v != s; v = prevv[v])
-            d = min(d, G[prevv[v]][preve[v]].cap);
+        for (int v = t; v != s; v = prev[v]) {
+            d = min(d, G[prev[v]][prev_e[v]].cap);
+        }
         f -= d;
-        res += d * h[t];
-        for(int v = t; v != s; v = prevv[v]){
-            edge &e = G[prevv[v]][preve[v]];
+        ret += d * h[t];
+        for (int v = t; v != s; v = prev[v]) {
+            edge& e = G[prev[v]][prev_e[v]];
             e.cap -= d;
             G[v][e.rev].cap += d;
         }
     }
-    return res;
+    return ret;
 }
+
+int main() {}
