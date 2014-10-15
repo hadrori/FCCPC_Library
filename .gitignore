@@ -1,6 +1,14 @@
+*~
+.*~
+._*
+*.o
+*in*
+*out*
+*ans*
+*tmp*
 *.aux
 *.log
 *.toc
 *.dvi
 *.out
-.DS*
+.DS_Store
