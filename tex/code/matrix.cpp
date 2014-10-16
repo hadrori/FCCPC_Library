@@ -1,5 +1,3 @@
-#include "macro.cpp"
-
 typedef double number;
 typedef vector<number> vec;
 typedef vector<vec> mat;

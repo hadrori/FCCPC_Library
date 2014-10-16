@@ -1,4 +1,3 @@
-#include "fmt.cpp"
 vector<int> poly_mul(vector<int> f, vector<int> g){
     int N = max(f.size(),g.size())*2;
     f.resize(N); g.resize(N);

@@ -1,5 +1,3 @@
-#include "macro.cpp"
-
 typedef complex<double> cd;
 vector<cd> fft(vector<cd> f, bool inv){
     int n, N = f.size();

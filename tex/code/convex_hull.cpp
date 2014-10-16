@@ -1,4 +1,3 @@
-#include "macro.cpp"
 #include "geometry.cpp"
 
 namespace std {

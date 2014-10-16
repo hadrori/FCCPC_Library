@@ -1,5 +1,3 @@
-#include "macro.cpp"
-
 struct edge {
     int to; long w;
     edge(int to, long w) : to(to), w(w) {}

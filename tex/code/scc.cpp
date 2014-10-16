@@ -1,5 +1,3 @@
-#include "macro.cpp"
-
 typedef vector<vector<int> > graph;
 
 class scc {

@@ -1,5 +1,3 @@
-#include "macro.cpp"
-
 // (x, y) s.t. a x + b y = gcd(a, b)
 long extgcd(long a, long b, long& x, long& y) {
     long g = a; x = 1, y = 0;

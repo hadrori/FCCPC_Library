@@ -1,5 +1,3 @@
-#include "macro.cpp"
-
 const int inf = 1e9;
 struct edge {
     int to, cap, rev;

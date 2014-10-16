@@ -12,8 +12,6 @@ using namespace std;
 #define pb push_back
 #define eb emplace_back
 
-//
-
 bool input()
 {
     return true;

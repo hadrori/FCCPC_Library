@@ -1,5 +1,3 @@
-#include "macro.cpp"
-
 const int C = 128;
 
 struct pma_node {

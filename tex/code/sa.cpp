@@ -1,5 +1,3 @@
-#include "macro.cpp"
-
 const int MAX_N = 1000000;
 int n, k;
 int rnk[MAX_N+1], tmp[MAX_N+1], sa[MAX_N+1], lcp[MAX_N+1];

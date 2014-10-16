@@ -1,5 +1,3 @@
-#include "macro.cpp"
-
 // Givens elimination; O(n^3)
 
 typedef double number;

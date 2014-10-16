@@ -1,4 +1,3 @@
-#include "poly_mul.cpp"
 vector<int> poly_inv(const vector<int> &f){
     int N = f.size();
     vector<int> r(1,mod_inv(f[0],mod));

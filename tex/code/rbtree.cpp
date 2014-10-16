@@ -1,5 +1,4 @@
-template<class T> class rbtree
-{
+template<class T> class rbtree {
 public:
     enum COL { BLACK, RED,};
     struct node {

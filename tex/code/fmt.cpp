@@ -1,4 +1,3 @@
-#include "macro.cpp"
 #include "number_theory.cpp"
 
 const int mod = 7*17*(1<<23)+1;

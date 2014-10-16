@@ -1,4 +1,3 @@
-#include "poly_inv.cpp"
 const int inv2 = (mod+1)/2;
 vector<int> poly_sqrt(const vector<int> &f) {
     int N = f.size();
