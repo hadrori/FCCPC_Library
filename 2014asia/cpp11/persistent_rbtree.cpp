@@ -62,22 +62,6 @@ public:
                 root = NULL;
         }
 
-        void print() { print(root,0,0);}
-        void print(node *v, int dep, int lr)
-        {
-                if(!v) return;
-                print(v->right,dep+1,1);
-                for(int i = 0; i < dep; i++) cerr << "  ";
-                if(!lr) cerr << "--";
-                else if(lr == 1) cerr << "「";
-                else cerr << "Ｌ";
-                if(v->color == RED) cerr << "\x1b[31m";
-                if(!v->left and !v->right) cerr << v->val << endl;
-                else cerr << "nd" << endl;
-                cerr << "\x1b[0m";
-                print(v->left,dep+1,2);
-        }
-
         void get(vector<T> &vs) { get(root,vs);}
         void get(node *v, vector<T> &vs)
         {
