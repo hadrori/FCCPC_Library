@@ -1,7 +1,10 @@
+#include "macro.cpp"
+#include "number_theory.cpp"
+
 const int mod = 7*17*(1<<23)+1;
 vector<int> fmt(vector<int> f, bool inv){
     int e, N = f.size();
-    assert((N&(N-1))==0 and "f.size() must be power of 2");
+    // assert((N&(N-1))==0 and "f.size() must be power of 2");
     for(e=0;;e++) if(N == (1<<e)) break;
     rep(m,N){
         int m2 = 0;
@@ -21,6 +24,6 @@ vector<int> fmt(vector<int> f, bool inv){
             }
         }
     }
-    if(inv) for(int i=0,ni=mod_inverse(N,mod);i<N;i++) f[i] = 1LL*f[i]*ni%mod;
+    if(inv) for(int i=0,ni=mod_inv(N,mod);i<N;i++) f[i] = 1LL*f[i]*ni%mod;
     return f;
 }

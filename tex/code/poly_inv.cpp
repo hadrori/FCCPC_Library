@@ -1,6 +1,7 @@
-vector<int> poly_inv(vector<int> f){
+#include "poly_mul.cpp"
+vector<int> poly_inv(const vector<int> &f){
     int N = f.size();
-    vector<int> r(1,mod_inverse(f[0],mod));
+    vector<int> r(1,mod_inv(f[0],mod));
     for(int k = 2; k <= N; k <<= 1){
         vector<int> nr = poly_mul(poly_mul(r,r), vector<int>(f.begin(),f.begin()+k));
         nr.resize(k);

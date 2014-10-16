@@ -1,3 +1,5 @@
+// just for compile
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -11,23 +13,3 @@ using namespace std;
 #define mp make_pair
 #define pb push_back
 #define eb emplace_back
-
-//
-
-bool input()
-{
-    return true;
-}
-
-void solve()
-{
-
-}
-
-int main()
-{
-    cin.tie(0);
-    ios_base::sync_with_stdio(false);
-
-    while (input()) solve();
-}

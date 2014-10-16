@@ -1,3 +1,5 @@
+#include "macro.cpp"
+
 const int MAX_N = 1000000;
 int n, k;
 int rnk[MAX_N+1], tmp[MAX_N+1], sa[MAX_N+1], lcp[MAX_N+1];
@@ -73,4 +75,3 @@ pair<int, int> LCS(string S, string T) {
   }
   return make_pair(pos, len);
 }
-

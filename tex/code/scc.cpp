@@ -1,37 +1,40 @@
-vi G[MAX];
-vvi scc; // ここに強連結成分分解の結果が入る
-stack<int> S;
-int inS[MAX], low[MAX], num[MAX], t, V;
+#include "macro.cpp"
 
-void visit(int v){
-    low[v] = num[v] = ++t;
-    S.push(v); inS[v] = 1;
-    repit(e,G[v]){
-        int w = *e;
-        if(num[w] == 0){
-            visit(w);
-            low[v] = min(low[v], low[w]);
+typedef vector<vector<int> > graph;
+
+class scc {
+    const int n;
+    graph G;
+    int cnt;
+    vector<int> num, low, in;
+    stack<int> stk;
+    vector<vector<int> > comp;
+    void dfs(int v) {
+        num[v] = low[v] = ++cnt;
+        stk.push(v), in[v] = true;
+        for (const int nv : G[v]) {
+            if (num[nv] == 0) {
+                dfs(nv);
+                low[v] = min(low[v], low[nv]);
+            } else if (in[nv]) {
+                low[v] = min(low[v], num[nv]);
+            }
         }
-        else if(inS[w]) low[v] = min(low[v], num[w]);
-    }
-    if(low[v] == num[v]){
-        scc.pb(vi());
-        while(1){
-            int w = S.top(); S.pop();
-            inS[w] = 0;
-            scc.back().pb(w);
-            if(v == w) break;
+        if (low[v] == num[v]) {
+            comp.eb();
+            int w;
+            do {
+                w = stk.top();
+                stk.pop(), in[w] = false;
+                comp.back().pb(w);
+            } while (w != v);
         }
     }
-}
-
-void stronglyCC(){
-    t = 0;
-    scc.clear();
-    memset(num, 0, sizeof(num));
-    memset(low, 0, sizeof(low));
-    memset(inS, 0, sizeof(inS));
-    while(S.size()) S.pop();
-    rep(u,V) if(num[u] == 0) visit(u);
-}
-
+public:
+    scc(const graph& G) : n(G.size()), G(G), cnt(0), num(n), low(n), in(n) {
+        rep(i, n) if (num[i] == 0) dfs(i);
+    }
+    vector<vector<int> > components() {
+        return comp;
+    }
+};

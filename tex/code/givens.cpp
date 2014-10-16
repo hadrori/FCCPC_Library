@@ -1,16 +1,25 @@
-#define mkrot(x,y,c,s) {double r = sqrt(x*x+y*y); c = x/r; s = y/r;}
-#define rot(x,y,c,s) {double u = c*x+s*y; double v = -s*x+c*y; x = u; y = v;}
-arr givens(mat A, arr b){
-    int n = b.size();
-    rep(i,n) repi(j,i+1,n){
-        double c, s;
-        mkrot(A[i][i], A[j][i], c, s);
-        rot(b[i], b[j], c, s);
-        repi(k,i,n) rot(A[i][k],A[j][k],c,s);
+#include "macro.cpp"
+
+// Givens elimination; O(n^3)
+
+typedef double number;
+typedef vector<vector<number> > matrix;
+
+inline double my_hypot(double x, double y) { return sqrt(x * x + y * y); }
+inline void givens_rotate(number& x, number& y, number c, number s) {
+    number u = c * x + s * y, v = -s * x + c * y;
+    x = u, y = v;
+}
+vector<number> givens(matrix A, vector<number> b) {
+    const int n = b.size();
+    rep(i, n) repi(j, i + 1, n) {
+        const number r = my_hypot(A[i][i], A[j][i]);
+        const number c = A[i][i] / r, s = A[j][i] / r;
+        givens_rotate(b[i], b[j], c, s);
+        repi(k, i + 1, n) givens_rotate(A[i][k], A[j][k], c, s);
     }
-    repd(i,n-1,0){
-        repi(j,i+1,n)
-            b[i] -= A[i][j] * b[j];
+    for (int i = n - 1; i >= 0; --i) {
+        repi(j, i + 1, n) b[i] -= A[i][j] * b[j];
         b[i] /= A[i][i];
     }
     return b;

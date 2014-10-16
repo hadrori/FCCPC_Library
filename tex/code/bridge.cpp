@@ -1,41 +1,45 @@
-vi G[MAX];
-vector<pii> brdg; // brdgに橋のリストが入る
-stack<int> roots, S;
-int num[MAX], inS[MAX], t, V;
+#include "macro.cpp"
 
-void visit(int v, int u){
-    num[v] = ++t;
-    S.push(v); inS[v] = 1;
-    roots.push(v);
-    repit(e, G[v]){
-        int w = *e;
-        if(!num[w]) visit(w, v);
-        else if(u != w && inS[w])
-            while(num[roots.top()] > num[w])
-                roots.pop();
-    }
-    if(v == roots.top()){
-        int tu = u, tv = v;
-        if(tu > tv) swap(tu, tv);
-        brdg.pb(pii(tu, tv)); 
-        while(1){
-            int w = S.top(); S.pop();
-            inS[w] = 0;
-            if(v == w) break;
+typedef vector<vector<int> > graph;
+
+class bridge {
+    const int n;
+    graph G;
+    int cnt;
+    vector<int> num, low, in;
+    stack<int> stk;
+    vector<pair<int, int> > brid;
+    vector<vector<int> > comp;
+    void dfs(int v, int p) {
+        num[v] = low[v] = ++cnt;
+        stk.push(v), in[v] = true;
+        for (const int nv : G[v]) {
+            if (num[nv] == 0) {
+                dfs(nv, v);
+                low[v] = min(low[v], low[nv]);
+            } else if (nv != p and in[nv]) {
+                low[v] = min(low[v], num[nv]);
+            }
         }
-        roots.pop();
+        if (low[v] == num[v]) {
+            if (p != n) brid.eb(min(v, p), max(v, p));
+            comp.eb();
+            int w;
+            do {
+                w = stk.top();
+                stk.pop(), in[w] = false;
+                comp.back().pb(w);
+            } while (w != v);
+        }
     }
-}
-
-void bridge(){
-    memset(num, 0, sizeof(num));
-    memset(inS, 0, sizeof(inS));
-    brdg.clear();
-    while(S.size()) S.pop();
-    while(roots.size()) roots.pop();
-    t = 0;
-    rep(u,V) if(num[u] == 0){
-        visit(u,V);
-        brdg.pop_back();
+public:
+    bridge(const graph& G) : n(G.size()), G(G), cnt(0), num(n), low(n), in(n) {
+        rep(i, n) if (num[i] == 0) dfs(i, n);
     }
-}
+    vector<pair<int, int> > get() {
+        return brid;
+    }
+    vector<vector<int> > components() {
+        return comp;
+    }
+};
