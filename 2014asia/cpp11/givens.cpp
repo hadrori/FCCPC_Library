@@ -16,7 +16,7 @@ vector<number> givens(matrix A, vector<number> b) {
         const number r = my_hypot(A[i][i], A[j][i]);
         const number c = A[i][i] / r, s = A[j][i] / r;
         givens_rotate(b[i], b[j], c, s);
-        repi(k, i + 1, n) givens_rotate(A[i][k], A[j][k], c, s);
+        repi(k, i, n) givens_rotate(A[i][k], A[j][k], c, s);
     }
     for (int i = n - 1; i >= 0; --i) {
         repi(j, i + 1, n) b[i] -= A[i][j] * b[j];
