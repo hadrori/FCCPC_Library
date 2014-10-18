@@ -72,6 +72,13 @@ bookmarksopen=true,
 %
 %
 \section{準備}
+\subsection{Caps LockとControlの入れ替え}
+\begin{lstlisting}
+xmodmap -e 'remove Lock = Caps_Lock';
+xmodmap -e 'add Control = Caps_Lock';
+xmodmap -e 'keysym Caps_Lock = Control_L';
+\end{lstlisting}
+
 \subsection{init.el}
 linumはemacs24のみ\par
 \lstinputlisting[language=Lisp]{./code/init.el}
@@ -161,6 +168,9 @@ $C_3=5$\\
 $C_4=14$\\
 \includegraphics[width=9cm, clip]{img/Catalan_graph.eps}\\
 
+\subsubsection{乱数(xor shift)}
+周期は$2^{128}-1$
+\lstinputlisting{./code/xor_rand.cpp}
 
 \subsection{多項式}
 FFTは基本定数重めなのでTLEに注意する.
