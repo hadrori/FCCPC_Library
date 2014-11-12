@@ -2,9 +2,9 @@
 .*~
 ._*
 *.o
-*in*
-*out*
-*ans*
+*in
+*out
+*ans
 *tmp*
 *.aux
 *.log
