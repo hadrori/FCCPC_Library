@@ -133,6 +133,16 @@ $O(V+E)$\par
 $O(V+E)$\par
 \lstinputlisting{./code/scc.cpp}
 
+\subsubsection{無向中国人郵便配達問題}
+$O(om\log n+o^22^o)$, $-O2$で$o\leq 18$程度が限界
+\lstinputlisting{./code/chinese_postman.cpp}
+\subsubsection{全点対間最短路(Johnson)}
+$O(max(VE\log V, V^2))$
+\lstinputlisting{./code/johnson.cpp}
+\subsubsection{無向グラフの全域最小カット}
+$O(V^3)$
+\lstinputlisting{./code/minimum_cut.cpp}
+
 \subsection{フロー}
 \subsubsection{最大流}
 $O(EV^2)$\par
@@ -146,23 +156,32 @@ $O(EV)$\par
 $O(FE\log V)$\par
 \lstinputlisting{./code/min_cost_flow.cpp}
 
+\subsection{Gomory-Hu木}
+$O(V MAXFLOW)$
+\lstinputlisting{./code/gomory_hu.cpp}
+
 \subsection{木}
 \subsubsection{木の直径}
 ある点(どこでもよい)から一番遠い点aを求める. 点aから一番遠い点までの距離がその木の直径になる.\par
 \subsubsection{最小全域木}
 \lstinputlisting{./code/mst.cpp}
+\subsubsection{最小全域有向木}
+$O(VE)$
+\lstinputlisting{./code/ms_arborescence.cpp}
 \subsubsection{最小シュタイナー木}
 $O(4^{|T|}V)$ \par
 gは無向グラフの隣接行列. Tは使いたい頂点の集合.\par
 \lstinputlisting{./code/min_steiner_tree.cpp}
-
+\subsubsection{木の同型性判定}
+順序付き$O(n)$\par
+順序なし$O(n\log n)$
+\lstinputlisting{./code/tree_isomorphism.cpp}
 
 \subsection{包除原理}
 \subsubsection{彩色数}
 $O(2^VV)$\par
 N[i] := iと隣接する頂点の集合(iも含む)\par
 \lstinputlisting{./code/graph-coloring.cpp}
-
 
 \section{数学}
 \subsection{整数}
@@ -188,6 +207,11 @@ $C_4=14$\\
 \subsubsection{乱数(xor shift)}
 周期は$2^{128}-1$
 \lstinputlisting{./code/xor_rand.cpp}
+
+\subsubsection{確率的素数判定(Miller-Rabin法)}
+$O(k\log^3n)$\par
+合成数を素数と判定する確率は最大で$4^{-k}$\\
+\lstinputlisting{./code/miller_rabin.cpp}
 
 \subsection{多項式}
 FFTは基本定数重めなのでTLEに注意する.
@@ -228,10 +252,33 @@ $O(N^3)$
 \lstinputlisting{./code/geometry.cpp}
 \subsection{凸包}
 \lstinputlisting{./code/convex_hull.cpp}
+\subsection{最近点対}
+だいたい$O(n\log n)$, 最悪縦1列に並んでる場合$O(n^2)$
+\lstinputlisting{./code/closest_pair.cpp}
+\subsection{点-多角形包含判定}
+$O(n)$
+\lstinputlisting{./code/contains.cpp}
+\subsection{凸多角形の共通部分}
+$O(n+m)$
+\lstinputlisting{./code/convex_intersect.cpp}
+\subsection{凸多角形の直径}
+$O(n)$
+\lstinputlisting{./code/convex_diameter.cpp}
+\subsection{ドロネー三角形分割(逐次添加法)}
+$O(n^2)$
+\lstinputlisting{./code/delaunay.cpp}
+
+
 
 \section{データ構造}
 \subsection{Union-Find木}
 \lstinputlisting{./code/disjoint_set.cpp}
+\subsection{Binary-Indexed-Tree}
+0-indexed
+\lstinputlisting{./code/bit.cpp}
+\subsection{Segment Tree}
+区間addとRMQができる.
+\lstinputlisting{./code/segtree_range_add.cpp}
 \subsection{赤黒木}
 \lstinputlisting{./code/rbtree.cpp}
 \subsection{永続赤黒木}
