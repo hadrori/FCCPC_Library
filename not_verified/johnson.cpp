@@ -1,36 +1,36 @@
-bool shortest_path(const graph &g, Matrix &dist, vector<vector<int> > &prev) {
+bool shortest_path(const graph &g, vector<vector<int> > &dist, vector<vector<int> > &prev) {
     int n = g.size();
-    Array h(n+1);
-    REP(k,n) REP(i,n) FOR(e,g[i]) {
-        if (h[e->dst] > h[e->src] + e->weight) {
-            h[e->dst] = h[e->src] + e->weight;
+    vector<int> h(n+1);
+    rep(k,n) rep(i,n) for(auto &e: g[i]) {
+        if (h[e.to] > h[e.from] + e->w) {
+            h[e.to] = h[e.from] + e->w;
             if (k == n-1) return false; // negative cycle
         }
     }
-    dist.assign(n, Array(n, INF));
+    dist.assign(n, vector<int>(n, 1e9));
     prev.assign(n, vector<int>(n, -2));
-    REP(s, n) {
-        priority_queue<Edge> Q;
-        Q.push(Edge(s, s, 0));
-        while (!Q.empty()) {
-            Edge e = Q.top(); Q.pop();
+    rep(s, n) {
+        priority_queue<edge> q;
+        q.push(edge(s, s, 0));
+        while (!q.empty()) {
+            edge e = q.top(); q.pop();
             if (prev[s][e.dst] != -2) continue;
-            prev[s][e.dst] = e.src;
-            FOR(f,g[e.dst]) {
-                if (dist[s][f->dst] > e.weight + f->weight) {
-                    dist[s][f->dst] = e.weight + f->weight;
-                    Q.push(Edge(f->src, f->dst, e.weight + f->weight));
+            prev[s][e.to] = e.from;
+            for(auto &f:g[e.to]) {
+                if (dist[s][f.to] > e.w + f->w) {
+                    dist[s][f.to] = e.w + f->w;
+                    q.push(edge(f-.from, f.to, e.w + f->w));
                 }
             }
         }
-        REP(u, n) dist[s][u] += h[u] - h[s];
+        rep(u, n) dist[s][u] += h[u] - h[s];
     }
 }
 
-vector<int> buildPath(const vector< vector<int> >& prev, int s, int t) {
+vector<int> build_path(const vector<vector<int> >& prev, int s, int t) {
     vector<int> path;
     for (int u = t; u >= 0; u = prev[s][u])
         path.push_back(u);
-    reverse(ALL(path));
+    reverse(begin(path), end(path));
     return path;
 }
