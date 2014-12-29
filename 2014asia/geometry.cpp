@@ -4,7 +4,6 @@
 
 const double eps = 1e-8; // choose carefully!
 const double pi = acos(-1.0);
-
 inline bool lt(double a, double b) { return a < b - eps; }
 inline bool gt(double a, double b) { return lt(b, a); }
 inline bool le(double a, double b) { return !lt(b, a); }
@@ -15,10 +14,8 @@ inline bool eq(double a, double b) { return !ne(a, b); }
 // points and lines
 
 typedef complex<double> point;
-
-inline double dot  (point a, point b) { return real(conj(a) * b); }
+inline double inner(point a, point b) { return real(conj(a) * b); }
 inline double cross(point a, point b) { return imag(conj(a) * b); }
-
 struct line {
     point a, b;
     line(point a, point b) : a(a), b(b) {}
@@ -37,10 +34,10 @@ struct line {
  */
 int ccw(point a, point b, point c) {
     b -= a, c -= a;
-    if (cross(b, c) > eps)    return +1;
-    if (cross(b, c) < eps)    return -1;
-    if (dot(b, c) < eps)      return +2; // c -- a -- b
-    if (lt(norm(b), norm(c))) return -2; // a -- b -- c
+    if (cross(b, c) > +eps)   return +1;
+    if (cross(b, c) < -eps)   return -1;
+    if (inner(b, c) < -eps)   return -2; // c -- a -- b
+    if (lt(norm(b), norm(c))) return +2; // a -- b -- c
     return 0;
 }
 bool intersectLS(const line& l, const line& s) {
@@ -54,14 +51,14 @@ bool intersectLL(const line& l, const line& m) {
         or eq(cross(l.b - l.a, m.a - l.a), 0.0); // overlap
 }
 point crosspointLL(const line& l, const line& m) {
-    double A = cross(l.b - l.a, m.b - m.a);
-    double B = cross(l.b - l.a, m.a - l.a);
-    if (eq(A, 0.0) and eq(B, 0.0)) return m.a; // overlap
-    assert(ne(A, 0.0));                        // not parallel
-    return m.a - B / A * (m.b - m.a);
+    double p = cross(l.b - l.a, m.b - m.a);
+    double q = cross(l.b - l.a, m.a - l.a);
+    if (eq(p, 0.0) and eq(q, 0.0)) return m.a; // overlap
+    assert(ne(p, 0.0));                        // not parallel
+    return m.a - q / p * (m.b - m.a);
 }
 point proj(const line& l, point p) {
-    double t = dot(l.b - l.a, p - l.a) / norm(l.b - l.a);
+    double t = inner(l.b - l.a, p - l.a) / norm(l.b - l.a);
     return l.a + t * (l.b - l.a);
 }
 point reflection(const line& l, point p) { return 2.0 * proj(l, p) - p; }
