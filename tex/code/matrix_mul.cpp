@@ -7,7 +7,7 @@ number inner_product(const arr &a, const arr &b) {
 arr mul(const mat &A, const arr &x) {
     arr y(A.size());
     rep(i,A.size()) rep(j,A[0].size())
-        y[i] = A[i][j] * x[j];
+        y[i] += A[i][j] * x[j];
     return y;
 }
 
