@@ -28,7 +28,7 @@ int min_cost_flow(graph& G, int s, int t, int f) {
             const int v = q.top().v;
             const int d = q.top().d;
             q.pop();
-            if (dist[v] <= d) continue;
+            if (dist[v] < d) continue;
             rep(i, G[v].size()) {
                 const edge& e = G[v][i];
                 if (e.cap > 0 and dist[e.to] > dist[v] + e.cost + h[v] - h[e.to]) {
