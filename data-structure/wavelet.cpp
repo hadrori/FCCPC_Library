@@ -132,6 +132,7 @@ public:
     vector<T> maximum(int l, int r, int k)
     {
         if (r-l < k) k = r-l;
+        if(k < 0) return {};
         vector<T> ret;
         max_dfs(0,l,r,k,0,ret);
         return ret;
@@ -141,7 +142,7 @@ public:
     // k is 0-indexed
     T kth_number(int l, int r, int k)
     {
-        if(r-l <= k) return -1;
+        if(r-l <= k or k < 0) return -1;
         T ret = 0;
         for (int d = 0; d < D; d++) {
             int lc = dat[d].count(1,l), rc = dat[d].count(1,r);
@@ -155,6 +156,57 @@ public:
                 l -= lc;
                 r -= rc;
             }
+        }
+        return ret;
+    }
+
+    int contain(int l, int r, T a, T b)
+    {
+        return 0;
+    }
+
+    int freq(int l, int r, T a, T b)
+    {
+        return 0;
+    }
+
+    T max_range(int l, int r, T a, T b)
+    {
+        return 0;
+    }
+
+    vector<T> intersect(int l, int r, int s, int t)
+    {
+        return {};
+    }
+
+    // top k of freq, O(kD log D)
+    vector<T> top(int l, int r, int k)
+    {
+        if(r-l < k) k = r-l;
+        if(k < 0) return {};
+        struct node {
+            T val;
+            int d, l, r;
+            node(){}
+            node(T val, int d, int l, int r) : val(val), d(d), l(l), r(r) {}
+            bool operator<(const node &v) const { return r-l < v.r-v.l; }
+        };
+
+        vector<T> ret;
+        priority_queue<node> q;
+        q.push(node(0,0,l,r));
+        while(!q.empty()) {
+            node v = q.top(); q.pop();
+            if(v.r-v.l <= 0) continue;
+            if(v.d == D) {
+                ret.push_back(v.val);
+                if(!--k) return ret;
+                continue;
+            }
+            int lc = dat[v.d].count(1,v.l), rc = dat[v.d].count(1,v.r);
+            q.push(node(1ULL<<(D-v.d-1)|v.val, v.d+1, lc+zs[v.d], rc+zs[v.d]));
+            q.push(node(v.val, v.d+1, v.l-lc, v.r-rc));
         }
         return ret;
     }
