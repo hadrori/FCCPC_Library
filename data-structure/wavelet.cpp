@@ -76,6 +76,7 @@ template<class T, int N, int D> class wavelet
             return;
         }
         int lc = dat[d].count(1,l), rc = dat[d].count(1,r);
+        // if min, change this order
         max_dfs(d+1, lc+zs[d], rc+zs[d], k, val|(1ULL<<(D-d-1)),vs);
         max_dfs(d+1, l-lc, r-rc, k, val, vs);
     }
