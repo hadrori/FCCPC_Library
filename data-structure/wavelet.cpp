@@ -52,6 +52,7 @@ public:
         }
         return ub-1;
     }
+    int select(bool val, int i, int l) { return select(val,i+count(val,l)); }
 
     bool operator[](int i) { return bs[i/block]>>(i%block)&1; }
 };
@@ -127,6 +128,26 @@ public:
         return r-l;
     }
     int count(T val, int r) { return count(val,0,r); }
+
+    // kth position of val, O(D log n)
+    int select(T val, int k)
+    {
+        int ls[D], rs[D], l = 0, r = n;
+        for (int d = 0; d < D; d++) {
+            ls[d] = l; rs[d] = r;
+            bool b = val>>(D-d-1)&1;
+            l = dat[d].count(b,l)+b*zs[d];
+            r = dat[d].count(b,r)+b*zs[d];
+        }
+        for (int d = D-1; d >= 0; d--) {
+            bool b = val>>(D-d-1)&1;
+            k = dat[d].select(b,k,ls[d]);
+            if(k >= rs[d] or k < 0) return -1;
+            k -= ls[d];
+        }
+        return k;
+    }
+    int select(T val, int k, int l) { return select(val,k+count(val,l)); }
 
     // top k of maximum, O(kD)
     vector<T> maximum(int l, int r, int k)
