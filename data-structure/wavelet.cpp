@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+using namespace std;
 // N is max length of array
 /*
   b : small block count
@@ -80,6 +82,18 @@ template<class T, int N, int D> class wavelet
         // if min, change this order
         max_dfs(d+1, lc+zs[d], rc+zs[d], k, val|(1ULL<<(D-d-1)),vs);
         max_dfs(d+1, l-lc, r-rc, k, val, vs);
+    }
+
+    int freq_dfs(int d, int l, int r, T val, T a, T b)
+    {
+        if(l == r) return 0;
+        if(d == D) return (a <= val and val < b)? r-l: 0;
+        T nv = 1ULL<<(D-d-1)|val, nnv = ((1ULL<<(D-d-1))-1)|nv;
+        if(nnv < a or b <= val) return 0;
+        if(a <= val and nnv < b) return r-l;
+        int lc = dat[d].count(1,l), rc = dat[d].count(1,r);
+        return freq_dfs(d+1,l-lc,r-rc,val,a,b)+
+               freq_dfs(d+1,lc+zs[d],rc+zs[d],nv,a,b);
     }
 public:
     wavelet(int n, T seq[]) : n(n)
@@ -186,12 +200,10 @@ public:
         return 0;
     }
 
-    int freq(int l, int r, T a, T b)
-    {
-        return 0;
-    }
+    // number of elements in [l,r) in [a,b), O(D)
+    int freq(int l, int r, T a, T b) { return freq_dfs(0,l,r,0,a,b); }
 
-    T max_range(int l, int r, T a, T b)
+    T maximum(int l, int r, T a, T b)
     {
         return 0;
     }
@@ -232,3 +244,13 @@ public:
         return ret;
     }
 };
+
+int main()
+{
+    const int M = 1<<19;
+    int hoge[M];
+    for (int i = 0; i < M; i++) {
+        hoge[i] = i/2;
+    }
+    return 0;
+}
