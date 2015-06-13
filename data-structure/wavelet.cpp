@@ -95,6 +95,20 @@ template<class T, int N, int D> class wavelet
         return freq_dfs(d+1,l-lc,r-rc,val,a,b)+
                freq_dfs(d+1,lc+zs[d],rc+zs[d],nv,a,b);
     }
+
+    void list_dfs(int d, int l, int r, T val, T a, T b, vector<pair<T,int>> &vs)
+    {
+        if(val >= b or r-l <= 0) return;
+        if(d == D) {
+            if(a <= val) vs.push_back(make_pair(val,r-l));
+            return;
+        }
+        T nv = val|(1LL<<(D-d-1)), nnv = nv|(((1LL<<(D-d-1))-1));
+        if(nnv < a) return;
+        int lc = dat[d].count(1,l), rc = dat[d].count(1,r);
+        list_dfs(d+1,l-lc,r-rc,val,a,b,vs);
+        list_dfs(d+1,lc+zs[d],rc+zs[d],nv,a,b,vs);
+    }
 public:
     wavelet(int n, T seq[]) : n(n)
     {
@@ -195,9 +209,23 @@ public:
         return ret;
     }
 
-    int contain(int l, int r, T a, T b)
+    // list of freq, O(kD)
+    vector<pair<T,int>> freq_list(int l, int r, T a, T b)
     {
-        return 0;
+        vector<pair<T,int>> ret;
+        list_dfs(0,l,r,0,a,b,ret);
+        return ret;
+    }
+
+    // list of points, [(x,y),...] in rectangle [(l,a), (r,b)), O(kD)
+    vector<pair<int,T>> get_rect(int l, int r, T a, T b)
+    {
+        vector<pair<T,int>> res = freq_list(l,r,a,b);
+        vector<pair<int,T>> ret;
+        for(auto &e: res)
+            for (int i = 0; i < e.second; i++)
+                ret.push_back(make_pair(select(e.first,i,l), e.first));
+        return ret;
     }
 
     // number of elements in [l,r) in [a,b), O(D)
@@ -250,7 +278,13 @@ int main()
     const int M = 1<<19;
     int hoge[M];
     for (int i = 0; i < M; i++) {
-        hoge[i] = i/2;
+        hoge[i] = i;
+    }
+
+    wavelet<int,M,20> wv(M,hoge);
+    auto f = wv.in_rect(0,7,3,8);
+    for(auto &e: f) {
+        cerr << e.first << ' ' << e.second << endl;
     }
     return 0;
 }
