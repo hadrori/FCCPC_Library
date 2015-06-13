@@ -1,0 +1,78 @@
+\documentclass[9pt,twocolumn,a4paper,landscape]{extarticle}
+%
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb}
+\usepackage[cmbtt]{bold-extra}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{ascmac}
+\usepackage{indentfirst}
+%
+\setlength{\columnsep}{3zw} 
+\setlength{\topmargin}{20mm}
+\addtolength{\textheight}{-40mm} 
+\addtolength{\topmargin}{-2in}
+\setlength{\textheight}{190mm}
+\setlength{\oddsidemargin}{-15mm}
+\setlength{\textwidth}{279mm}
+%
+\newcommand{\divergence}{\mathrm{div}\,}
+\newcommand{\grad}{\mathrm{grad}\,}
+\newcommand{\rot}{\mathrm{rot}\,}
+%
+\setcounter{tocdepth}{3}
+\usepackage[dvipdfmx,
+bookmarks=true,
+anchorcolor=blue,
+linkcolor=blue,
+urlcolor=blue,
+colorlinks=true,
+bookmarksopen=true,
+]{hyperref}
+
+
+% Listingsの設定
+\usepackage{ascmac,here,txfonts,txfonts}
+\usepackage{listings,jlisting}
+\usepackage[dvips]{color}
+\lstset{
+  breaklines = true,
+  language=c++,
+  captionpos=b,
+  basicstyle={\ttfamily \footnotesize},
+  commentstyle={\itshape \color[cmyk]{1,0.4,1,0}},
+  keywordstyle={\ttfamily \color[cmyk]{0.3,0.9,0,0}},
+  stringstyle={\ttfamily \color[rgb]{0.8,0,0}},
+  frame=tlrb,
+  framesep=5pt,
+  showstringspaces=false,
+  numbers=left,
+  stepnumber=1,
+  numberstyle=\tiny,
+  tabsize=2,
+  xleftmargin=5mm,
+}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\empty}
+\chead{\empty}
+\rhead{\empty}
+\lfoot{FCCPC Library}
+\cfoot{\empty}
+\rfoot{\thepage}
+\renewcommand{\footrulewidth}{0.1pt}
+\renewcommand{\headrulewidth}{0pt}
+\footskip 24pt
+%
+\begin{document}
+\tableofcontents
+\newpage
+\input{./tex/prepare.tex}
+\input{./tex/string.tex}
+\input{./tex/graph.tex}
+\input{./tex/math.tex}
+\input{./tex/geometory.tex}
+\input{./tex/date-structure.tex}
+
+\end{document}

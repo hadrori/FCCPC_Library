@@ -1,0 +1,66 @@
+
+\section{グラフ}
+\lstinputlisting{graph/graph.cpp}
+\subsection{強連結成分分解}
+\subsubsection{関節点}
+$O(E)$\par
+ある関節点uがグラフをk個に分割するときartにはk-1個のuが含まれる. 不要な場合はuniqueを忘れないこと.\par
+\lstinputlisting{graph/articulation.cpp}
+
+\subsubsection{橋}
+$O(V+E)$\par
+\lstinputlisting{graph/bridge.cpp}
+
+\subsubsection{強連結成分分解}
+$O(V+E)$\par
+\lstinputlisting{graph/scc.cpp}
+
+\subsubsection{無向中国人郵便配達問題}
+$O(om\log n+o^22^o)$, $-O2$で$o\leq 18$程度が限界
+\lstinputlisting{graph/chinese_postman.cpp}
+\subsubsection{全点対間最短路(Johnson)}
+$O(max(VE\log V, V^2))$
+\lstinputlisting{graph/johnson.cpp}
+\subsubsection{無向グラフの全域最小カット}
+$O(V^3)$
+\lstinputlisting{graph/minimum_cut.cpp}
+
+\subsection{フロー}
+\subsubsection{最大流}
+$O(EV^2)$\par
+\lstinputlisting{graph/max_flow.cpp}
+
+\subsubsection{二部マッチング}
+$O(EV)$\par
+
+\lstinputlisting{graph/bi_matching.cpp}
+\subsubsection{最小費用流}
+$O(FE\log V)$\par
+\lstinputlisting{graph/min_cost_flow.cpp}
+
+\subsubsection{Gomory-Hu木}
+$O(V MAXFLOW)$
+\lstinputlisting{graph/gomory_hu.cpp}
+
+\subsection{木}
+\subsubsection{木の直径}
+ある点(どこでもよい)から一番遠い点aを求める. 点aから一番遠い点までの距離がその木の直径になる.\par
+\subsubsection{最小全域木}
+\lstinputlisting{graph/mst.cpp}
+\subsubsection{最小全域有向木}
+$O(VE)$
+\lstinputlisting{graph/ms_arborescence.cpp}
+\subsubsection{最小シュタイナー木}
+$O(4^{|T|}V)$ \par
+gは無向グラフの隣接行列. Tは使いたい頂点の集合.\par
+\lstinputlisting{graph/min_steiner_tree.cpp}
+\subsubsection{木の同型性判定}
+順序付き$O(n)$\par
+順序なし$O(n\log n)$
+\lstinputlisting{graph/tree_isomorphism.cpp}
+
+\subsection{包除原理}
+\subsubsection{彩色数}
+$O(2^VV)$\par
+N[i] := iと隣接する頂点の集合(iも含む)\par
+\lstinputlisting{graph/graph_coloring.cpp}

@@ -1,0 +1,25 @@
+\section{準備}
+\subsection{Caps LockとControlの入れ替え}
+\begin{lstlisting}
+xmodmap -e 'remove Lock = Caps_Lock';
+xmodmap -e 'add Control = Caps_Lock';
+xmodmap -e 'keysym Caps_Lock = Control_L';
+\end{lstlisting}
+
+\subsection{init.el}
+linumはemacs24のみ\par
+\lstinputlisting[language=Lisp]{others/init.el}
+
+\subsection{tpl.cpp}
+\lstinputlisting{others/tpl.cpp}
+
+\subsection{get input}
+\begin{lstlisting}
+wget -r http://(url of sample input)
+\end{lstlisting}
+
+\subsection{alias}
+\begin{lstlisting}
+alias g++='g++ -g -O2 -std=gnu++0x -Wl,-stack_size,64000000';
+alias emacs='emacs -nw';
+\end{lstlisting}

@@ -1,0 +1,20 @@
+
+\section{文字列}
+\subsection{マッチング}
+\subsubsection{複数文字列マッチング(Aho-Corasick法)}
+$O(N+M)$\par
+\lstinputlisting{string/aho_corasick.cpp}
+
+\subsection{Suffix Array}
+find\_string() : $O(|T|\log |S|)$\par
+S中にTが含まれないなら-1, 含まれるならその先頭.\par
+LCS() : $O(|S+T|)$\par
+最長共通部分文字列. (先頭, 長さ)を返す.
+
+\lstinputlisting{string/sa.cpp}
+
+\subsection{回文長(Manacher)}
+$O(N)$\par
+各文字を中心とした時の回文の最長の半径.\par
+偶数長の回文はダミーを挟むことで求められている.\par
+\lstinputlisting{string/manacher.cpp}
