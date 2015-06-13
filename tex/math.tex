@@ -2,7 +2,7 @@
 \section{数学}
 \subsection{整数}
 \subsubsection{剰余}
-\lstinputlisting{math/number_theory.cpp}
+\lstinputlisting{math/modulo/number_theory.cpp}
 
 \subsubsection{カタラン数}
 $n\leq 16$程度が限度. $n\geq 1$について以下が成り立つ.
@@ -16,9 +16,9 @@ nが十分大きいとき, カタラン数は以下に近似できる.
 \end{eqnarray*}
 ()を正しく並べる方法, 二分木, 格子状の経路の数え上げ, 平面グラフの交差などに使われる.\\
 $C_3=5$\\
-\includegraphics[width=9cm, clip]{img/Catalan_tree.eps}\\
+\includegraphics[width=9cm, clip]{images/Catalan_tree.eps}\\
 $C_4=14$\\
-\includegraphics[width=9cm, clip]{img/Catalan_graph.eps}\\
+\includegraphics[width=9cm, clip]{images/Catalan_graph.eps}\\
 
 \subsubsection{乱数(xor shift)}
 周期は$2^{128}-1$
@@ -58,8 +58,8 @@ $extgcd()$, $mod\_inverse()$, $poly\_inv()$, $poly\_mul()$, $fmt()$が必要.
 
 
 \subsection{行列}
-\lstinputlisting{math/matrix.cpp}
+\lstinputlisting{math/matrix/matrix.cpp}
 
 \subsubsection{線形方程式の解(Givens消去法)}
 $O(N^3)$
-\lstinputlisting{math/givens.cpp}
+\lstinputlisting{math/matrix/givens.cpp}

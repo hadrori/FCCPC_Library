@@ -13,7 +13,7 @@ $O(V+E)$\par
 
 \subsubsection{強連結成分分解}
 $O(V+E)$\par
-\lstinputlisting{graph/scc.cpp}
+\lstinputlisting{graph/strongly_connected_component.cpp}
 
 \subsubsection{無向中国人郵便配達問題}
 $O(om\log n+o^22^o)$, $-O2$で$o\leq 18$程度が限界
@@ -28,32 +28,32 @@ $O(V^3)$
 \subsection{フロー}
 \subsubsection{最大流}
 $O(EV^2)$\par
-\lstinputlisting{graph/max_flow.cpp}
+\lstinputlisting{graph/flow/max_flow.cpp}
 
 \subsubsection{二部マッチング}
 $O(EV)$\par
 
-\lstinputlisting{graph/bi_matching.cpp}
+\lstinputlisting{graph/flow/bi_matching.cpp}
 \subsubsection{最小費用流}
 $O(FE\log V)$\par
-\lstinputlisting{graph/min_cost_flow.cpp}
+\lstinputlisting{graph/flow/minimum_cost_flow.cpp}
 
 \subsubsection{Gomory-Hu木}
 $O(V MAXFLOW)$
-\lstinputlisting{graph/gomory_hu.cpp}
+\lstinputlisting{graph/flow/gomory_hu.cpp}
 
 \subsection{木}
 \subsubsection{木の直径}
 ある点(どこでもよい)から一番遠い点aを求める. 点aから一番遠い点までの距離がその木の直径になる.\par
 \subsubsection{最小全域木}
-\lstinputlisting{graph/mst.cpp}
+\lstinputlisting{graph/minimum_spanning_tree.cpp}
 \subsubsection{最小全域有向木}
 $O(VE)$
 \lstinputlisting{graph/ms_arborescence.cpp}
 \subsubsection{最小シュタイナー木}
 $O(4^{|T|}V)$ \par
 gは無向グラフの隣接行列. Tは使いたい頂点の集合.\par
-\lstinputlisting{graph/min_steiner_tree.cpp}
+\lstinputlisting{graph/minimum_steiner_tree.cpp}
 \subsubsection{木の同型性判定}
 順序付き$O(n)$\par
 順序なし$O(n\log n)$
