@@ -1,5 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
 // N is max length of array
 /*
   b : small block count
@@ -80,8 +78,18 @@ template<class T, int N, int D> class wavelet
         }
         int lc = dat[d].count(1,l), rc = dat[d].count(1,r);
         // if min, change this order
-        max_dfs(d+1, lc+zs[d], rc+zs[d], k, val|(1ULL<<(D-d-1)),vs);
+        max_dfs(d+1, lc+zs[d], rc+zs[d], k, 1ULL<<(D-d-1)|val,vs);
         max_dfs(d+1, l-lc, r-rc, k, val, vs);
+    }
+
+    T max_dfs(int d, int l, int r, T val, T a, T b)
+    {
+        if(r-l <= 0 or val >= b) return -1;
+        if(d == D) return val>=a? val: -1;
+        int lc = dat[d].count(1,l), rc = dat[d].count(1,r);
+        T ret = max_dfs(d+1, lc+zs[d], rc+zs[d], 1ULL<<(D-d-1)|val, a, b);
+        if(~ret) return ret;
+        return max_dfs(d+1, l-lc, r-rc, val, a, b);
     }
 
     int freq_dfs(int d, int l, int r, T val, T a, T b)
@@ -231,15 +239,8 @@ public:
     // number of elements in [l,r) in [a,b), O(D)
     int freq(int l, int r, T a, T b) { return freq_dfs(0,l,r,0,a,b); }
 
-    T maximum(int l, int r, T a, T b)
-    {
-        return 0;
-    }
-
-    vector<T> intersect(int l, int r, int s, int t)
-    {
-        return {};
-    }
+    // max in [l,r) in [a,b), -1 is not found, O(D)
+    T maximum(int l, int r, T a, T b) { return max_dfs(0,l,r,0,a,b); }
 
     // top k of freq, O(kD log D)
     vector<T> top(int l, int r, int k)
@@ -272,19 +273,3 @@ public:
         return ret;
     }
 };
-
-int main()
-{
-    const int M = 1<<19;
-    int hoge[M];
-    for (int i = 0; i < M; i++) {
-        hoge[i] = i;
-    }
-
-    wavelet<int,M,20> wv(M,hoge);
-    auto f = wv.in_rect(0,7,3,8);
-    for(auto &e: f) {
-        cerr << e.first << ' ' << e.second << endl;
-    }
-    return 0;
-}
