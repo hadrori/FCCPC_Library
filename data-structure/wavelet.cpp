@@ -217,7 +217,7 @@ public:
         return ret;
     }
 
-    // list of freq, O(kD)
+    // list of freq, O(kD) (O(k+D)?)
     vector<pair<T,int>> freq_list(int l, int r, T a, T b)
     {
         vector<pair<T,int>> ret;
@@ -225,7 +225,7 @@ public:
         return ret;
     }
 
-    // list of points, [(x,y),...] in rectangle [(l,a), (r,b)), O(kD)
+    // list of points, [(x,y),...] in rectangle [(l,a), (r,b)), O(kD) (O(k+D)?)
     vector<pair<int,T>> get_rect(int l, int r, T a, T b)
     {
         vector<pair<T,int>> res = freq_list(l,r,a,b);
@@ -242,7 +242,7 @@ public:
     // max in [l,r) in [a,b), -1 is not found, O(D)
     T maximum(int l, int r, T a, T b) { return max_dfs(0,l,r,0,a,b); }
 
-    // top k of freq, O(kD log D)
+    // top k of freq, O(kD^2)
     vector<T> top(int l, int r, int k)
     {
         if(r-l < k) k = r-l;
