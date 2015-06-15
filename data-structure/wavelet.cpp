@@ -241,35 +241,4 @@ public:
 
     // max in [l,r) in [a,b), -1 is not found, O(D)
     T maximum(int l, int r, T a, T b) { return max_dfs(0,l,r,0,a,b); }
-
-    // top k of freq, O(kD^2)
-    vector<T> top(int l, int r, int k)
-    {
-        if(r-l < k) k = r-l;
-        if(k < 0) return {};
-        struct node {
-            T val;
-            int d, l, r;
-            node(){}
-            node(T val, int d, int l, int r) : val(val), d(d), l(l), r(r) {}
-            bool operator<(const node &v) const { return r-l < v.r-v.l; }
-        };
-
-        vector<T> ret;
-        priority_queue<node> q;
-        q.push(node(0,0,l,r));
-        while(!q.empty()) {
-            node v = q.top(); q.pop();
-            if(v.r-v.l <= 0) continue;
-            if(v.d == D) {
-                ret.push_back(v.val);
-                if(!--k) return ret;
-                continue;
-            }
-            int lc = dat[v.d].count(1,v.l), rc = dat[v.d].count(1,v.r);
-            q.push(node(1ULL<<(D-v.d-1)|v.val, v.d+1, lc+zs[v.d], rc+zs[v.d]));
-            q.push(node(v.val, v.d+1, v.l-lc, v.r-rc));
-        }
-        return ret;
-    }
 };
