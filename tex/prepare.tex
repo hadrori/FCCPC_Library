@@ -1,10 +1,24 @@
 \section{準備}
-\subsection{Caps LockとControlの入れ替え}
-\begin{lstlisting}
+\subsection{Caps LockをControlに変更}
+2つ
+\begin{enumerate}
+  \item
+    変更
+    \begin{lstlisting}
+setxkbmap -option ctrl:nocaps;
+    \end{lstlisting}
+    元に戻す
+    \begin{lstlisting}
+setxkbmap -option;
+    \end{lstlisting}
+  \item
+    上でダメな場合
+    \begin{lstlisting}
 xmodmap -e 'remove Lock = Caps_Lock';
 xmodmap -e 'add Control = Caps_Lock';
 xmodmap -e 'keysym Caps_Lock = Control_L';
-\end{lstlisting}
+    \end{lstlisting}
+\end{enumerate}
 
 \subsection{init.el}
 linumはemacs24のみ\par
