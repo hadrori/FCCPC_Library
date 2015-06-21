@@ -12,4 +12,29 @@
 \subsection{永続赤黒木}
 \lstinputlisting{data-structure/persistent_rbtree.cpp}
 \subsection{wavelet行列}
+N := 列の長さ\par
+M := 最大値\\
+\subsubsection{完備辞書}
+\begin{table} [htb]
+  \begin{tabular} { |l|l| } \hline
+    function & 計算量 \\ \hline
+    count & $O(1)$ \\ \hline
+    select & $O(\log N)$ \\ \hline
+  \end{tabular}
+\end{table}
+\lstinputlisting{data-structure/fid.cpp}
+\subsubsection{wavelet行列}
+\begin{table} [htb]
+  \begin{tabular} { |l|l|c|c| } \hline
+    function & 計算量 & FID::count & FID::select\\ \hline
+    count & $O(\log M)$ & o & \\ \hline
+    select & $O(\log N \log M)$ & o & o \\ \hline
+    get & $O(\log M)$ & o & \\ \hline
+    maximum & $O(\log M)$ or $O(k\log M)$ & o & \\ \hline
+    kth\_number & $O(\log M)$ & o & \\ \hline
+    freq & $O(\log M)$ & o & \\ \hline
+    freq\_list & $O(k\log M)$ & o & \\ \hline
+    get\_rect & $O(k\log N \log M)$ & o & o \\ \hline
+  \end{tabular}
+\end{table}
 \lstinputlisting{data-structure/wavelet.cpp}
