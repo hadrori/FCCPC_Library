@@ -1,5 +1,3 @@
-#include "macro.cpp"
-
 class union_find {
     vector<int> p;
     int root(int i) { return p[i] >= 0 ? p[i] = root(p[i]) : i; }

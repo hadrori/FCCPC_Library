@@ -1,5 +1,3 @@
-#include "geometry.cpp"
-
 namespace std {
     bool operator <(const point& a, const point& b) {
         return ne(real(a), real(b)) ? lt(real(a), real(b)) : lt(imag(a), imag(b));

@@ -1,11 +1,8 @@
-template<class T> struct bit
-{
+template<class T> struct bit {
     int n;
     vector<T> dat;
 
-    bit(int n) : n(n){
-        dat.assign(n,0);
-    }
+    bit(int n) : n(n) { dat.assign(n,0); }
     // sum [0,i)
     T sum(int i){
         int ret = 0;

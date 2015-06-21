@@ -1,6 +1,3 @@
-#include "disjoint_set.cpp"
-#include "graph.cpp"
-
 struct mst_edge {
     int u, v; long w;
     mst_edge(int u, int v, long w) : u(u), v(v), w(w) {}
