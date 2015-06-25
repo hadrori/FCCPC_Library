@@ -1,5 +1,5 @@
 template<class T> struct segtree {
-    T N;
+    int N;
     vector<T> dat, sum;
     segtree(int n) {
         N = 1;
