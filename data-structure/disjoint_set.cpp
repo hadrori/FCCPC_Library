@@ -1,8 +1,8 @@
-class union_find {
+class disjoint_set {
     vector<int> p;
-    int root(int i) { return p[i] >= 0 ? p[i] = root(p[i]) : i; }
 public:
-    union_find(int n) : p(n, -1) {}
+    disjoint_set(int n) : p(n, -1) {}
+    int root(int i) { return p[i] >= 0 ? p[i] = root(p[i]) : i; }
     bool same(int i, int j) { return root(i) == root(j); }
     int size(int i) { return -p[root(i)]; }
     void merge(int i, int j) {
