@@ -1,9 +1,9 @@
 bool suspect(long a, int s, long d, long n) {
-    long x = mod_pow(a, d, n);
+    long x = mod_pow(a, d, n); // use mod_powl instead for large n
     if (x == 1) return true;
     for (int r = 0; r < s; ++r) {
         if (x == n - 1) return true;
-        x = x * x % n;
+        x = x * x % n; // use mod_mul instead for large n
     }
     return false;
 }
