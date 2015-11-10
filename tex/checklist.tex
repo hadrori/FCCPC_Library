@@ -1,15 +1,5 @@
-\documentclass{jsarticle}
-
-\setlength{\textheight}{232mm}
-\setlength{\topmargin}{-10mm}
-\parindent=0pt
-\pagestyle{empty}
-
-\begin{document}
-
-\twocolumn[\section*{Verdict別チェックリスト}]
-
-\vbox{}\subsection*{Wrong Answer}
+\section{Verdict別チェックリスト}
+\subsection{Wrong Answer}
 
 \begin{itemize}
 \item コーナーケースはないか？
@@ -40,7 +30,7 @@
 \item DPの更新順は正しいか？
 \end{itemize}
 
-\subsection*{Time Limit Exceeded}
+\subsection{Time Limit Exceeded}
 
 \begin{itemize}
 \item 計算量は許容範囲内か？
@@ -56,7 +46,7 @@
   \end{itemize}
 \end{itemize}
 
-\subsection*{Runtime Error\,/\,Segmentation Fault}
+\subsection{Runtime Error\,/\,Segmentation Fault}
 
 \begin{itemize}
 \item 配列やコンテナのサイズは適切か？
@@ -74,7 +64,7 @@
 
 \newpage
 
-\subsection*{出力が壊滅的なとき}
+\subsection{出力が壊滅的なとき}
 
 \begin{itemize}
 \item \verb|return|を忘れていないか？
@@ -87,14 +77,14 @@
   \end{itemize}
 \end{itemize}
 
-\subsection*{そもそも解けないとき}
+\subsection{そもそも解けないとき}
 
 \begin{itemize}
 \item 題意把握に間違いはないか？
 \item 制約条件を見逃していないか？
 \end{itemize}
 
-\subsection*{解法メモ}
+\subsection{解法メモ}
 
 \begin{description}
 \item[辞書順最小の解] 解の存在判定
@@ -103,5 +93,3 @@
 \item[高速化] Segment Tree・Doubling・Monge性
 \item[その他] とりあえずソート・逆から解く・LP定式化
 \end{description}
-
-\end{document}
