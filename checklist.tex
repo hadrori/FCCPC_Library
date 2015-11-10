@@ -1,0 +1,107 @@
+\documentclass{jsarticle}
+
+\setlength{\textheight}{232mm}
+\setlength{\topmargin}{-10mm}
+\parindent=0pt
+\pagestyle{empty}
+
+\begin{document}
+
+\twocolumn[\section*{Verdict別チェックリスト}]
+
+\vbox{}\subsection*{Wrong Answer}
+
+\begin{itemize}
+\item コーナーケースはないか？
+\item 解なしの扱いは正しいか？
+  \begin{itemize}
+  \item 処理を抜けているかにも注意
+  \end{itemize}
+\item 初期化したか？ またそれは適切か？
+  \begin{itemize}
+  \item とくに複数テストケースのとき
+  \end{itemize}
+\item タイプミスはないか？
+\item 出力形式は正しいか？
+\item 入力を破壊して，出力に影響していないか？
+\item オーバーフローの危険性はないか？
+  \begin{itemize}
+  \item \verb|1 << n|にも注意
+  \end{itemize}
+\item 計算誤差は許容範囲内か？
+  \begin{itemize}
+  \item \verb|inf|, \verb|eps|がらみの演算は危険！ \\
+    原則として大小比較でしか使わない
+  \end{itemize}
+\item 使っていない変数はないか？
+  \begin{itemize}
+  \item 始点$s$など
+  \end{itemize}
+\item DPの更新順は正しいか？
+\end{itemize}
+
+\subsection*{Time Limit Exceeded}
+
+\begin{itemize}
+\item 計算量は許容範囲内か？
+  \begin{itemize}
+  \item テストケースの数にも注意
+  \end{itemize}
+\item 入力はボトルネックにならないか？
+\item メモ化を忘れていないか？
+\item 無限ループの危険性はないか？
+\item ボトルネックを定数倍高速化できないか？
+  \begin{itemize}
+  \item $\verb|int|<\verb|long long|\ll\verb|double|$
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Runtime Error\,/\,Segmentation Fault}
+
+\begin{itemize}
+\item 配列やコンテナのサイズは適切か？
+\item 負の添字にアクセスしていないか？
+\item 入力は正しく受け取れているか？
+  \begin{itemize}
+  \item \verb|getline|の前に\verb|cin.ignore()|
+  \end{itemize}
+\item スタックオーバーフローの危険性はないか？
+  \begin{itemize}
+  \item 再帰が深くなることはないか？
+  \item 訪問済みフラグを立て忘れていないか？
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{出力が壊滅的なとき}
+
+\begin{itemize}
+\item \verb|return|を忘れていないか？
+\item $1$-originを直し忘れていないか？
+\item 添字に間違いはないか？
+\item 変数名は衝突していないか？
+\item 演算子の優先順位に間違いはないか？
+  \begin{itemize}
+  \item \verb|(1 << n) - 1|, \verb|(x & y) == z|
+  \end{itemize}
+\end{itemize}
+
+\subsection*{そもそも解けないとき}
+
+\begin{itemize}
+\item 題意把握に間違いはないか？
+\item 制約条件を見逃していないか？
+\end{itemize}
+
+\subsection*{解法メモ}
+
+\begin{description}
+\item[辞書順最小の解] 解の存在判定
+\item[集合の$2$-分割] 最小カット
+\item[重複が$k$個以下の区間] $k$-最小費用流
+\item[高速化] Segment Tree・Doubling・Monge性
+\item[その他] とりあえずソート・逆から解く・LP定式化
+\end{description}
+
+\end{document}
