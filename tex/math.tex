@@ -8,20 +8,9 @@
 \lstinputlisting{math/modulo/discrete_log.cpp}
 
 \subsubsection{カタラン数}
-$n\leq 16$程度が限度. $n\geq 1$について以下が成り立つ.
-\begin{eqnarray*}
-  C_n &=& \frac{1}{n+1}\binom{2n}{n}\\
-      &=& \binom{2n}{n}-\binom{2n}{n-1}\\
-\end{eqnarray*}
-nが十分大きいとき, カタラン数は以下に近似できる.
-\begin{eqnarray*}
-  C_n &=& \frac{4^n}{n^{3/2}\sqrt{\pi}}\\
-\end{eqnarray*}
-()を正しく並べる方法, 二分木, 格子状の経路の数え上げ, 平面グラフの交差などに使われる.\\
-$C_3=5$\\
-\includegraphics[width=9cm, clip]{images/Catalan_tree.eps}\\
-$C_4=14$\\
-\includegraphics[width=9cm, clip]{images/Catalan_graph.eps}\\
+()を正しく並べる方法, 二分木, 格子状の経路の数え上げ, 平面グラフの交差などに使われる. \\
+$C_{16} = 35357670$ が限界？
+\[ C_n = \frac{1}{n+1}\binom{2n}{n} = \binom{2n}{n}-\binom{2n}{n-1} \approx \frac{4^n}{n^{3/2}\sqrt{\pi}} \]
 
 \subsubsection{乱数(xor shift)}
 周期は$2^{128}-1$
