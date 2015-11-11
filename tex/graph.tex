@@ -1,6 +1,6 @@
 
+
 \section{グラフ}
-\lstinputlisting{graph/graph.cpp}
 \subsection{強連結成分分解}
 \subsubsection{関節点}
 $O(E)$\par
@@ -43,8 +43,7 @@ $O(V MAXFLOW)$
 \lstinputlisting{graph/flow/gomory_hu.cpp}
 
 \subsection{木}
-\subsubsection{木の直径}
-ある点(どこでもよい)から一番遠い点aを求める. 点aから一番遠い点までの距離がその木の直径になる.\par
+\subsubsection{木の直径: double sweep}
 \subsubsection{最小全域木}
 \lstinputlisting{graph/minimum_spanning_tree.cpp}
 \subsubsection{最小全域有向木}
@@ -55,8 +54,7 @@ $O(4^{|T|}V)$ \par
 gは無向グラフの隣接行列. Tは使いたい頂点の集合.\par
 \lstinputlisting{graph/minimum_steiner_tree.cpp}
 \subsubsection{木の同型性判定}
-順序付き$O(n)$\par
-順序なし$O(n\log n)$
+順序付き$O(n)$, 順序なし$O(n\log n)$
 \lstinputlisting{graph/tree_isomorphism.cpp}
 
 \subsubsection{HL分解}
@@ -71,4 +69,3 @@ N[i] := iと隣接する頂点の集合(iも含む)\par
 \lstinputlisting{graph/graph_coloring.cpp}
 \subsubsection{極大独立集合}
 \lstinputlisting{graph/indsets.cpp}
-

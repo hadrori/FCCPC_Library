@@ -1,6 +1,4 @@
-typedef vector<vector<int> > graph;
-
-class scc {
+struct scc {
     const int n;
     graph G;
     int cnt;
@@ -20,19 +18,14 @@ class scc {
         }
         if (low[v] == num[v]) {
             comp.eb();
-            int w;
-            do {
+            int w; do {
                 w = stk.top();
                 stk.pop(), in[w] = false;
                 comp.back().pb(w);
             } while (w != v);
         }
     }
-public:
     scc(const graph& G) : n(G.size()), G(G), cnt(0), num(n), low(n), in(n) {
         rep(i, n) if (num[i] == 0) dfs(i);
-    }
-    vector<vector<int> > components() {
-        return comp;
     }
 };
