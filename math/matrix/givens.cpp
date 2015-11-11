@@ -1,8 +1,5 @@
-// Givens elimination; O(n^3)
-
 typedef double number;
 typedef vector<vector<number> > matrix;
-
 inline double my_hypot(double x, double y) { return sqrt(x * x + y * y); }
 inline void givens_rotate(number& x, number& y, number c, number s) {
     number u = c * x + s * y, v = -s * x + c * y;

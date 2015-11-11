@@ -1,7 +1,6 @@
 typedef double number;
 typedef vector<number> vec;
 typedef vector<vec> mat;
-
 vec mul(const mat& A, const vec& x) {
     const int n = A.size();
     vec b(n);
@@ -10,7 +9,6 @@ vec mul(const mat& A, const vec& x) {
     }
     return b;
 }
-
 mat mul(const mat& A, const mat& B) {
     const int n = A.size();
     const int o = A[0].size();
@@ -21,7 +19,6 @@ mat mul(const mat& A, const mat& B) {
     }
     return C;
 }
-
 mat pow(mat A, long m) {
     const int n = A.size();
     mat B(n, vec(n));
@@ -32,9 +29,7 @@ mat pow(mat A, long m) {
     } while (m >>= 1);
     return B;
 }
-
 const number eps = 1e-4;
-
 // determinant; O(n^3)
 number det(mat A) {
     int n = A.size();
@@ -52,7 +47,6 @@ number det(mat A) {
     }
     return D;
 }
-
 // rank; O(n^3)
 int rank(mat A) {
     int n = A.size(), m = A[0].size(), r = 0;

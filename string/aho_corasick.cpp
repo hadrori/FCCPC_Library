@@ -1,12 +1,10 @@
 const int C = 128;
-
 struct pma_node {
     pma_node *next[C]; // use next[0] as failure link
     vector<int> match;
     pma_node() { fill(next, next + C, (pma_node *) NULL); }
     ~pma_node() { rep(i, C) if (next[i] != NULL) delete next[i]; }
 };
-
 pma_node *construct_pma(const vector<string>& pat) {
     pma_node *const root = new pma_node();
     root->next[0] = root;
@@ -20,7 +18,7 @@ pma_node *construct_pma(const vector<string>& pat) {
         }
         now->match.pb(i);
     }
-    // make failure links by BFS
+    // make failure links with BFS
     queue<pma_node *> q;
     repi(i, 1, C) {
         if (root->next[i] == NULL) root->next[i] = root;
@@ -44,7 +42,6 @@ pma_node *construct_pma(const vector<string>& pat) {
     }
     return root;
 }
-
 void match(pma_node*& now, const string s, vector<int>& ret) {
     for (const char c : s) {
         while (now->next[int(c)] == NULL) now = now->next[0];

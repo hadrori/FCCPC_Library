@@ -1,18 +1,16 @@
-struct mst_edge {
+struct uedge {
     int u, v; long w;
-    mst_edge(int u, int v, long w) : u(u), v(v), w(w) {}
-    bool operator <(const mst_edge& t) const { return w < t.w; }
-    bool operator >(const mst_edge& t) const { return w > t.w; }
+    uedge(int u, int v, long w) : u(u), v(v), w(w) {}
+    bool operator <(const uedge& t) const { return w < t.w; }
+    bool operator >(const uedge& t) const { return w > t.w; }
 };
-
 graph kruskal(const graph& G) {
     const int n = G.size();
-    vector<mst_edge> E;
+    vector<uedge> E;
     rep(i, n) for (const auto& e : G[i]) {
         if (i < e.to) E.eb(i, e.to, e.w);
     }
     sort(all(E));
-
     graph T(n);
     disjoint_set uf(n);
     for (const auto& e : E) {
@@ -24,16 +22,14 @@ graph kruskal(const graph& G) {
     }
     return T;
 }
-
 graph prim(const vector<vector<long> >& A, int s = 0) {
     const int n = A.size();
     graph T(n);
     vector<int> done(n);
-    priority_queue<mst_edge, vector<mst_edge>, greater<mst_edge> > q;
+    priority_queue<uedge, vector<uedge>, greater<uedge> > q;
     q.emplace(-1, s, 0);
     while (not q.empty()) {
-        const auto e = q.top();
-        q.pop();
+        const auto e = q.top(); q.pop();
         if (done[e.v]) continue;
         done[e.v] = 1;
         if (e.u >= 0) {

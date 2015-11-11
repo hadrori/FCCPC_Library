@@ -4,15 +4,12 @@ struct edge {
     edge(int to, int cap, int rev) : to(to), cap(cap), rev(rev) {}
 };
 typedef vector<vector<edge> > graph;
-
 void add_edge(graph& G, int from, int to, int cap) {
     G[from].eb(to, cap, G[to].size());
     G[to].eb(from, 0, G[from].size() - 1);
 }
-
-class max_flow {
-    const int n;
-    graph& G;
+struct max_flow {
+    const int n; graph& G;
     vector<int> level, iter;
     void bfs(int s, int t) {
         level.assign(n, -1);
@@ -44,7 +41,6 @@ class max_flow {
         }
         return 0;
     }
-public:
     max_flow(graph& G) : n(G.size()), G(G) {}
     int calc(int s, int t) {
         int ret = 0, d;
