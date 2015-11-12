@@ -1,7 +1,6 @@
 \documentclass{jsarticle}
-
-\setlength{\textheight}{232mm}
-\setlength{\topmargin}{-10mm}
+\setlength{\textheight}{252mm}
+\setlength{\topmargin}{-20mm}
 \parindent=0pt
 \pagestyle{empty}
 
@@ -12,31 +11,28 @@
 \vbox{}\subsection*{Wrong Answer}
 
 \begin{itemize}
-\item コーナーケースはないか？
-\item 解なしの扱いは正しいか？
-  \begin{itemize}
-  \item 処理を抜けているかにも注意
-  \end{itemize}
 \item 初期化したか？ またそれは適切か？
   \begin{itemize}
   \item とくに複数テストケースのとき
   \end{itemize}
-\item タイプミスはないか？
-\item 出力形式は正しいか？
-\item 入力を破壊して，出力に影響していないか？
 \item オーバーフローの危険性はないか？
   \begin{itemize}
-  \item \verb|1 << n|にも注意
+  \item \verb|1LL << n|
   \end{itemize}
+\item 境界条件は正しいか？
+\item 出力形式は正しいか？
+\item 解なしの扱いは正しいか？
+  \begin{itemize}
+  \item 処理を抜けているかにも注意
+  \end{itemize}
+\item タイプミスはないか？
+\item 入力を破壊して，出力に影響していないか？
+\item コーナーケースはないか？
 \item 計算誤差は許容範囲内か？
   \begin{itemize}
-  \item \verb|inf|, \verb|eps|がらみの演算は危険！ \\
-    原則として大小比較でしか使わない
+  \item \verb|inf|, \verb|eps|は大小比較でしか使わない
   \end{itemize}
 \item 使っていない変数はないか？
-  \begin{itemize}
-  \item 始点$s$など
-  \end{itemize}
 \item DPの更新順は正しいか？
 \end{itemize}
 
@@ -45,22 +41,26 @@
 \begin{itemize}
 \item 計算量は許容範囲内か？
   \begin{itemize}
-  \item テストケースの数にも注意
+  \item 複数テストケースに注意
   \end{itemize}
-\item 入力はボトルネックにならないか？
+\item 入出力はボトルネックにならないか？
 \item メモ化を忘れていないか？
 \item 無限ループの危険性はないか？
+\item スターグラフなど，極端なケースでも大丈夫か？
 \item ボトルネックを定数倍高速化できないか？
   \begin{itemize}
-  \item $\verb|int|<\verb|long long|\ll\verb|double|$
+  \item $\verb|int|<\verb|long long|<\verb|double|$
+  \item ループアンローリングしてみる（奥の手）
   \end{itemize}
+\item 埋め込めるところはないか？（奥の手）
 \end{itemize}
 
 \subsection*{Runtime Error\,/\,Segmentation Fault}
 
 \begin{itemize}
 \item 配列やコンテナのサイズは適切か？
-\item 負の添字にアクセスしていないか？
+\item 範囲外アクセスの危険性はないか？
+\item ポインタは\verb|NULL|初期化されているか？
 \item 入力は正しく受け取れているか？
   \begin{itemize}
   \item \verb|getline|の前に\verb|cin.ignore()|
@@ -71,8 +71,6 @@
   \item 訪問済みフラグを立て忘れていないか？
   \end{itemize}
 \end{itemize}
-
-\newpage
 
 \subsection*{出力が壊滅的なとき}
 
@@ -100,8 +98,30 @@
 \item[辞書順最小の解] 解の存在判定
 \item[集合の$2$-分割] 最小カット
 \item[重複が$k$個以下の区間] $k$-最小費用流
-\item[高速化] Segment Tree・Doubling・Monge性
-\item[その他] とりあえずソート・逆から解く・LP定式化
+\item[幾何] 候補の離散化
+\item[高速化] deque，segtree, doubling, Monge性
+  \begin{itemize}
+  \item 自明DPの漸化式を書いてみる
+  \item bool DPは単調性を疑ってみる
+  \end{itemize}
+\item[とりあえず]\mbox{}
+  \begin{itemize}
+  \item 二分探索できないか？
+  \item ソートしたら解けないか？
+    \begin{itemize}
+    \item 「いい順序」はあるか？
+    \end{itemize}
+  \item 逆順\,/\,補集合\,/\,双対を考えてみる
+    \begin{itemize}
+    \item フローだと思ったらカットでも
+    \end{itemize}
+  \item 式を変形してみる
+  \item LP定式化してみる
+  \end{itemize}
 \end{description}
+
+\subsection*{デバグメモ}
+
+空に向かってでもいい，一行一行説明してみよう！
 
 \end{document}
